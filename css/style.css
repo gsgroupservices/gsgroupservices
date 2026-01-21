@@ -65,24 +65,39 @@ nav ul li ul.dropdown li {
   margin: 10px 0;
 }
 
-/* HERO */
+/* HERO (DESKTOP) */
 .hero {
-  background: #1e3a5f;
+  background-image: url("../images/hero-plant-hire-groundworks-london.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   color: #fff;
-  padding: 60px 20px;
+  min-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
+  padding: 60px 20px;
 }
 
 .hero h1 {
   font-size: 32px;
   margin-bottom: 15px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
 
 .hero p {
   font-size: 18px;
   margin-bottom: 20px;
+  max-width: 700px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
 
+/* BUTTON */
 .button {
   background: #ff9800;
   color: #000;
@@ -159,8 +174,55 @@ footer {
   padding: 20px;
 }
 
-/* MOBILE MENU FIX */
+/* MEGA MENU */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.has-mega {
+  position: relative;
+}
+
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.has-mega:hover .mega-menu {
+  display: grid;
+}
+
+.mega-column h4 {
+  margin-bottom: 10px;
+}
+
+.mega-column ul {
+  padding: 0;
+}
+
+.mega-column li {
+  margin-bottom: 8px;
+}
+
+/* MOBILE */
 @media (max-width: 768px) {
+
   nav ul {
     flex-direction: column;
     align-items: flex-start;
@@ -173,5 +235,19 @@ footer {
   nav ul li ul.dropdown {
     position: static;
     padding-left: 15px;
+  }
+
+  /* HERO MOBILE */
+  .hero {
+    background-image: url("../images/hero-plant-hire-groundworks-london-mobile.webp");
+    min-height: 70vh;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 16px;
   }
 }
