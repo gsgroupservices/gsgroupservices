@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Forklift Hire with Operator in London | GS Group Services</title>
+
+  <meta name="description" content="Reliable forklift hire with operator in London. GS Group Services provides certified forklift operators for construction, industrial and warehouse projects across Greater London.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "GS Group Services",
+    "url": "https://gsgroupservices.co.uk",
+    "logo": "https://gsgroupservices.co.uk/logo.png",
+    "description": "Forklift hire with operator in London for construction, industrial and warehouse projects.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "GB"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "London"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Forklift Hire Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Forklift Hire with Operator",
+            "areaServed": "London, UK"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">GS Group Services</div>
+
+  <nav class="main-nav">
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+
+      <li class="has-mega">
+        <a href="services.html">Services</a>
+
+        <div class="mega-menu">
+          <div class="mega-column">
+            <h4>Plant Hire with Operator</h4>
+            <ul>
+              <li><a href="telehandler-hire-london.html">Telehandler Hire London</a></li>
+              <li><a href="forklift-hire-london.html">Forklift Hire London</a></li>
+              <li><a href="mini-digger-dumper-hire-london.html">Mini Digger & Dumper London</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-column">
+            <h4>Groundworks</h4>
+            <ul>
+              <li><a href="groundworks-london.html">Groundworks London</a></li>
+              <li><a href="mini-digger-dumper-hire-london.html">Excavation & Site Prep</a></li>
+              <li><a href="borehole-drilling-london.html">Borehole Drilling</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-column">
+            <h4>Vehicle Services</h4>
+            <ul>
+              <li><a href="luton-van-box-installation-london.html">Luton Van Box Installation</a></li>
+              <li><a href="luton-van-box-installation-london.html">Curtain-Side Installation</a></li>
+              <li><a href="luton-van-box-installation-london.html">Vehicle Box Repairs</a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+
+      <li><a href="london.html">London</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Forklift Hire with Operator in London</h1>
+  <p>
+    Certified forklift hire services with experienced operators for
+    construction sites, warehouses and industrial projects across London.
+  </p>
+</section>
+
+<!-- INTRO -->
+<section class="content">
+  <h2>Professional Forklift Services Across Greater London</h2>
+
+  <p>
+    GS Group Services offers reliable
+    <strong>forklift hire with operator in London</strong>,
+    supporting logistics, material handling and site operations.
+    Our services are often combined with
+    <a href="telehandler-hire-london.html">telehandler hire</a>
+    and
+    <a href="groundworks-london.html">groundworks services</a>
+    for complete site solutions.
+  </p>
+
+  <p>
+    We operate across Greater London, providing flexible hire options,
+    modern forklift equipment and fully trained operators in compliance
+    with UK health and safety regulations.
+  </p>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <article class="service">
+    <h3>Forklift Hire with Certified Operator</h3>
+    <p>
+      Our forklift hire includes CPCS/CSCS certified operators who ensure
+      safe and efficient lifting operations on all types of sites.
+    </p>
+  </article>
+
+  <article class="service">
+    <h3>Warehouse, Industrial & Construction Use</h3>
+    <p>
+      Forklift services suitable for warehouses, factories and construction
+      sites, handling pallets, materials and heavy loads efficiently.
+    </p>
+  </article>
+
+  <article class="service">
+    <h3>Fully Insured & Safety Compliant</h3>
+    <p>
+      All equipment is fully insured and maintained to high standards,
+      ensuring compliance with UK regulations and safe operation on site.
+    </p>
+  </article>
+</section>
+
+<!-- AREAS -->
+<section class="areas">
+  <h2>Forklift Hire Areas Covered</h2>
+  <p>
+    We provide forklift hire with operator throughout Greater London,
+    including North, South, East and West London.
+    Services are also available in surrounding areas such as Luton,
+    Watford and St Albans.
+  </p>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Need Forklift Hire in London?</h2>
+  <p>
+    Contact GS Group Services today for a fast and competitive quote for
+    forklift hire with operator in London.
+  </p>
+  <a href="contact.html" class="button">Request a Quote</a>
+</section>
+
+<footer>
+  <p>© GS Group Services | Forklift Hire with Operator in London</p>
+</footer>
+
+</body>
+</html>
