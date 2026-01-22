@@ -1,6 +1,6 @@
-/* ==================================================
+/* =========================
    RESET
-================================================== */
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -14,9 +14,9 @@ body {
   background-color: #f7f7f7;
 }
 
-/* ==================================================
-   HEADER & NAVIGATION
-================================================== */
+/* =========================
+   HEADER & NAV
+========================= */
 header {
   background: #0b1c2d;
   color: #fff;
@@ -49,39 +49,32 @@ header {
   text-decoration: underline;
 }
 
-/* ==================================================
-   MEGA MENU – DESKTOP ONLY (NO FLASH / NO BUG)
-================================================== */
+/* =========================
+   MEGA MENU – CHROME FIX
+========================= */
 .has-mega {
   position: relative;
 }
 
+/* CHIUSO DI DEFAULT */
 .mega-menu {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
-
   background: #fff;
   padding: 30px;
-
-  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   z-index: 1000;
-
-  /* hidden by default */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
 }
 
-.has-mega:hover .mega-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+/* APERTO SOLO SU DESKTOP CON MOUSE */
+@media (hover: hover) and (pointer: fine) {
+  .has-mega:hover .mega-menu {
+    display: grid;
+  }
 }
 
 .mega-column h4 {
@@ -106,9 +99,9 @@ header {
   text-decoration: underline;
 }
 
-/* ==================================================
-   HERO
-================================================== */
+/* =========================
+   HERO – DESKTOP
+========================= */
 .hero {
   background-image: url("../images/hero-plant-hire-groundworks-london.webp");
   background-size: cover;
@@ -129,8 +122,8 @@ header {
 
 .hero h1 {
   font-size: 34px;
-  max-width: 900px;
   margin-bottom: 15px;
+  max-width: 900px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
 
@@ -141,9 +134,9 @@ header {
   text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
 
-/* ==================================================
+/* =========================
    BUTTON
-================================================== */
+========================= */
 .button {
   background: #ff9800;
   color: #000;
@@ -153,12 +146,12 @@ header {
   border-radius: 4px;
 }
 
-/* ==================================================
+/* =========================
    SECTIONS
-================================================== */
+========================= */
 section {
-  background: #fff;
   padding: 40px 20px;
+  background: #fff;
   margin-bottom: 10px;
 }
 
@@ -176,9 +169,9 @@ section p {
   margin-bottom: 15px;
 }
 
-/* ==================================================
-   SERVICES GRID
-================================================== */
+/* =========================
+   SERVICES
+========================= */
 .services-home,
 .services {
   display: grid;
@@ -193,18 +186,18 @@ section p {
   border-radius: 5px;
 }
 
-/* ==================================================
+/* =========================
    CTA
-================================================== */
+========================= */
 .cta {
   background: #0b1c2d;
   color: #fff;
   text-align: center;
 }
 
-/* ==================================================
+/* =========================
    FOOTER
-================================================== */
+========================= */
 footer {
   background: #0b1c2d;
   color: #fff;
@@ -212,9 +205,9 @@ footer {
   padding: 20px;
 }
 
-/* ==================================================
-   MOBILE (MEGA MENU DISABLED CLEANLY)
-================================================== */
+/* =========================
+   MOBILE
+========================= */
 @media (max-width: 768px) {
 
   .main-nav ul {
@@ -226,9 +219,11 @@ footer {
     margin-bottom: 10px;
   }
 
+  /* HERO MOBILE */
   .hero {
     background-image: url("../images/hero-plant-hire-groundworks-london-mobile.webp");
     min-height: 70vh;
+    padding: 50px 20px;
   }
 
   .hero h1 {
@@ -239,7 +234,7 @@ footer {
     font-size: 16px;
   }
 
-  /* hide mega menu completely on mobile */
+  /* MEGA MENU DISABILITATO SU MOBILE */
   .mega-menu {
     display: none !important;
   }
