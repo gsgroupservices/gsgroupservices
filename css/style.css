@@ -20,14 +20,31 @@ body {
 header {
   background: #0b1c2d;
   color: #fff;
-  padding: 15px 20px;
+  padding: 14px 20px;
 }
 
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO (RIDIMENSIONATO CORRETTAMENTE) */
 .logo {
-  font-size: 22px;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
 }
 
+.logo img {
+  height: 38px;          /* DESKTOP */
+  width: auto;
+  max-width: 180px;      /* BLOCCO ANTI-GIGANTE */
+  display: block;
+}
+
+/* =========================
+   NAV
+========================= */
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -43,6 +60,7 @@ header {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .main-nav a:hover {
@@ -50,13 +68,33 @@ header {
 }
 
 /* =========================
-   MEGA MENU – CHROME FIX
+   MENU CONTACT DETAILS
+========================= */
+.menu-contact a {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.menu-contact.phone a {
+  color: #ff9800;
+}
+
+.menu-contact.email a {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.menu-contact.email a:hover {
+  opacity: 1;
+}
+
+/* =========================
+   MEGA MENU
 ========================= */
 .has-mega {
   position: relative;
 }
 
-/* CHIUSO DI DEFAULT */
 .mega-menu {
   display: none;
   position: absolute;
@@ -64,13 +102,13 @@ header {
   left: 0;
   background: #fff;
   padding: 30px;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   z-index: 1000;
 }
 
-/* APERTO SOLO SU DESKTOP CON MOUSE */
 @media (hover: hover) and (pointer: fine) {
   .has-mega:hover .mega-menu {
     display: grid;
@@ -100,7 +138,7 @@ header {
 }
 
 /* =========================
-   HERO – DESKTOP
+   HERO
 ========================= */
 .hero {
   background-image: url("../images/hero-plant-hire-groundworks-london.webp");
@@ -206,9 +244,28 @@ footer {
 }
 
 /* =========================
-   MOBILE
+   RESPONSIVE
 ========================= */
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .logo img {
+    height: 34px;
+    max-width: 160px;
+  }
+}
+
+/* MOBILE */
 @media (max-width: 768px) {
+
+  header {
+    padding: 10px 16px;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    gap: 10px;
+  }
 
   .main-nav ul {
     flex-direction: column;
@@ -216,10 +273,22 @@ footer {
   }
 
   .main-nav li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
-  /* HERO MOBILE */
+  .logo img {
+    height: 30px;
+    max-width: 140px;
+  }
+
+  .menu-contact a {
+    font-size: 14px;
+  }
+
+  .mega-menu {
+    display: none !important;
+  }
+
   .hero {
     background-image: url("../images/hero-plant-hire-groundworks-london-mobile.webp");
     min-height: 70vh;
@@ -233,9 +302,12 @@ footer {
   .hero p {
     font-size: 16px;
   }
+}
 
-  /* MEGA MENU DISABILITATO SU MOBILE */
-  .mega-menu {
-    display: none !important;
+/* MOBILE SMALL */
+@media (max-width: 480px) {
+  .logo img {
+    height: 28px;
+    max-width: 130px;
   }
 }
