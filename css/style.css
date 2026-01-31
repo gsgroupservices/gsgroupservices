@@ -311,3 +311,138 @@ footer {
     max-width: 130px;
   }
 }
+
+/* =========================
+   WHATSAPP FLOAT BUTTON
+========================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  font-size: 30px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   COOKIE BANNER (GDPR)
+========================= */
+.cookie-banner {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0b1c2d;
+  color: #fff;
+  padding: 15px 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  z-index: 2000;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+
+.cookie-banner p {
+  margin: 0;
+  font-size: 14px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.cookie-banner a {
+  color: #ff9800;
+  text-decoration: underline;
+}
+
+.cookie-accept {
+  background: #ff9800;
+  color: #000;
+  border: none;
+  padding: 10px 25px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cookie-accept:hover {
+  background: #e68a00;
+}
+
+/* =========================
+   FOOTER ENHANCED
+========================= */
+.footer-content {
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+.footer-content a {
+  color: #ff9800;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   FORM STYLES
+========================= */
+.quote-form {
+  max-width: 500px;
+}
+
+.quote-form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 5px rgba(255,152,0,0.3);
+}
+
+.quote-form button {
+  margin-top: 20px;
+}
+
+/* Honeypot field - hidden from users */
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+}
