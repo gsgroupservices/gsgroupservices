@@ -1,197 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+<?php
+/**
+ * GS Group Services - Contact Form Handler
+ * Processes quote requests with honeypot spam protection
+ */
 
-  <title>Plant Hire & Groundworks in London | GS Group Services</title>
+// Only accept POST requests
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    header("Location: contact.html");
+    exit;
+}
 
-  <meta name="description" content="Professional telehandler hire and forklift hire with operator, groundworks, excavation, vehicle box services and borehole drilling in London. Trusted construction support across Greater London.">
+// Configuration
+$admin_email = "info@gsgroupservices.co.uk";
+$from_email  = "noreply@gsgroupservices.co.uk";
+$site_name   = "GS Group Services";
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// Sanitize input function
+function clean($data) {
+    return htmlspecialchars(strip_tags(trim($data)));
+}
 
-  <link rel="stylesheet" href="css/style.css">
+// Get and sanitize form data
+$name     = clean($_POST["name"] ?? "");
+$email    = clean($_POST["email"] ?? "");
+$phone    = clean($_POST["phone"] ?? "");
+$service  = clean($_POST["service"] ?? "");
+$location = clean($_POST["location"] ?? "");
+$message  = clean($_POST["message"] ?? "");
 
-  <!-- Google Schema (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "GS Group Services",
-    "url": "https://gsgroupservices.co.uk",
-    "logo": "https://gsgroupservices.co.uk/logo.png",
-    "email": "info@gsgroupservices.co.uk",
-    "telephone": "+447440184221",
-    "description": "Plant hire and groundworks services in London including telehandler hire with operator, forklift hire with operator, excavation and vehicle body services.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "GB"
-    },
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "London"
-    }
-  }
-  </script>
-</head>
+// Honeypot spam check - if filled, it's a bot
+$honeypot = $_POST["website"] ?? "";
+if (!empty($honeypot)) {
+    // Silently redirect bots to thank you page (don't alert them)
+    header("Location: thank-you.html");
+    exit;
+}
 
-<body>
+// Basic validation
+if (empty($name) || empty($email) || empty($phone) || empty($service)) {
+    // Redirect back with error (you could add error handling)
+    header("Location: contact.html?error=missing");
+    exit;
+}
 
-<header>
-  <div class="logo">GS Group Services</div>
+// Validate email format
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: contact.html?error=email");
+    exit;
+}
 
-  <nav class="main-nav">
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
+// Build email to admin
+$subject = "New Quote Request – " . $service;
 
-      <li class="has-mega">
-        <a href="services.html">Services</a>
+$body = "
+===========================================
+NEW QUOTE REQUEST FROM WEBSITE
+===========================================
 
-        <div class="mega-menu">
-          <div class="mega-column">
-            <h4>Plant Hire with Operator</h4>
-            <ul>
-              <li><a href="telehandler-hire-london.html">Telehandler Hire London</a></li>
-              <li><a href="forklift-hire-london.html">Forklift Hire London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Mini Digger & Dumper London</a></li>
-            </ul>
-          </div>
+Name:     $name
+Email:    $email
+Phone:    $phone
+Service:  $service
+Location: $location
 
-          <div class="mega-column">
-            <h4>Groundworks</h4>
-            <ul>
-              <li><a href="groundworks-london.html">Groundworks London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Excavation & Site Prep</a></li>
-              <li><a href="borehole-drilling-london.html">Borehole Drilling</a></li>
-            </ul>
-          </div>
+Project Details:
+$message
 
-          <div class="mega-column">
-            <h4>Vehicle Services</h4>
-            <ul>
-              <li><a href="luton-van-box-installation-london.html">Luton Van Box Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Curtain-Side Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Vehicle Box Repairs</a></li>
-            </ul>
-          </div>
-        </div>
-      </li>
+===========================================
+Sent from: gsgroupservices.co.uk
+";
 
-      <li><a href="london.html">London</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+$headers  = "From: $site_name <$from_email>\r\n";
+$headers .= "Reply-To: $email\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion();
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Plant Hire & Groundworks Services in London</h1>
-  <p>
-    Telehandler and forklift hire with operator, groundworks, excavation and
-    specialist construction services across Greater London.
-  </p>
-</section>
+// Send email to admin
+$mail_sent = mail($admin_email, $subject, $body, $headers);
 
-<!-- INTRO -->
-<section class="content">
-  <h2>Professional Construction Support Across London</h2>
-  <p>
-    GS Group Services provides reliable plant hire and groundworks solutions
-    throughout London. We support construction companies, contractors and
-    commercial clients with experienced operators and modern equipment.
-  </p>
-</section>
+// Auto-reply to customer
+$reply_subject = "We received your quote request – GS Group Services";
+$reply_body = "
+Hi $name,
 
-<!-- SERVICES -->
-<section class="services">
-  <article class="service">
-    <h3>Telehandler Hire with Operator in London</h3>
-    <p>
-      Our <a href="telehandler-hire-london.html">telehandler hire with operator</a>
-      service delivers safe and efficient lifting solutions for construction
-      sites across London.
-    </p>
-  </article>
+Thank you for contacting GS Group Services.
 
-  <article class="service">
-    <h3>Forklift Hire with Operator in London</h3>
-    <p>
-      We provide <a href="forklift-hire-london.html">forklift hire with operator</a>
-      for warehouses, industrial units and construction projects.
-    </p>
-  </article>
+We have received your request for: $service
 
-  <article class="service">
-    <h3>Groundworks & Excavation</h3>
-    <p>
-      Our <a href="groundworks-london.html">groundworks services</a> include
-      excavation, trenching and site preparation using modern mini diggers
-      and dumpers.
-    </p>
-  </article>
+Our team will review your requirements and contact you within 24 hours.
 
-  <article class="service">
-    <h3>Vehicle Box & Curtain-Side Services</h3>
-    <p>
-      Specialist Luton van box installation, curtain-side conversions
-      and commercial vehicle body repairs across London.
-    </p>
-  </article>
+If your project is urgent, please call us directly:
+📞 Phone: 07440 184221
+💬 WhatsApp: https://wa.me/447440184221
 
-  <article class="service">
-    <h3>Borehole & Water Well Drilling</h3>
-    <p>
-      Professional borehole and water well drilling services for residential,
-      agricultural and commercial projects across the UK.
-    </p>
-  </article>
-</section>
+Your request details:
+- Service: $service
+- Location: $location
 
-<!-- GET A QUOTE -->
-<section class="contact">
-  <h2>Get a Quote</h2>
-  <p>Contact us today for plant hire or groundworks services in London.</p>
+Kind regards,
+GS Group Services
 
-  <form action="send.php" method="post" class="quote-form">
+---
+Website: https://gsgroupservices.co.uk
+Email: info@gsgroupservices.co.uk
+Phone: 07440 184221
+";
 
-    <label>Full Name *</label>
-    <input type="text" name="name" required>
+$reply_headers  = "From: $site_name <$from_email>\r\n";
+$reply_headers .= "Reply-To: $admin_email\r\n";
+$reply_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    <label>Email *</label>
-    <input type="email" name="email" required>
+// Send auto-reply
+mail($email, $reply_subject, $reply_body, $reply_headers);
 
-    <label>Phone *</label>
-    <input type="tel" name="phone" required>
-
-    <label>Service Required *</label>
-    <select name="service" required>
-      <option value="">Select a service</option>
-      <option>Telehandler Hire</option>
-      <option>Forklift Hire</option>
-      <option>Groundworks</option>
-      <option>Mini Digger & Dumper</option>
-      <option>Vehicle Box Services</option>
-      <option>Borehole Drilling</option>
-    </select>
-
-    <label>Project Location</label>
-    <input type="text" name="location" placeholder="London">
-
-    <label>Project Details</label>
-    <textarea name="message" rows="5"></textarea>
-
-    <button type="submit" class="button">Get a Quote</button>
-  </form>
-
-  <div class="contact-details">
-    <p><strong>Email:</strong> info@gsgroupservices.co.uk</p>
-    <p><strong>Alternative Email:</strong> contact@gsgroupservices.co.uk</p>
-    <p><strong>Phone:</strong> <a href="tel:07440184221">07440 184221</a></p>
-  </div>
-</section>
-
-<footer>
-  <p>© GS Group Services – Plant Hire & Groundworks Specialists in London</p>
-</footer>
-
-</body>
-</html>
+// Redirect to thank you page
+header("Location: thank-you.html");
+exit;

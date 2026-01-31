@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>Plant Hire & Groundworks in London | GS Group Services</title>
+  <title>Contact Us | Plant Hire & Groundworks London | GS Group Services</title>
 
-  <meta name="description" content="Professional telehandler hire and forklift hire with operator, groundworks, excavation, vehicle box services and borehole drilling in London. Trusted construction support across Greater London.">
+  <meta name="description" content="Contact GS Group Services for professional telehandler hire, forklift hire with operator, groundworks and construction services in London. Get a free quote today.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+  <link rel="canonical" href="https://gsgroupservices.co.uk/contact.html">
 
   <!-- Google Schema (JSON-LD) -->
   <script type="application/ld+json">
@@ -82,16 +86,14 @@
 
       <li><a href="london.html">London</a></li>
       <li><a href="contact.html">Contact</a></li>
- <!-- CONTATTI NEL MENU -->
-    <li class="menu-contact phone">
-      <a href="tel:+447440184221">📞 07440 184221</a>
-    </li>
+      <!-- CONTATTI NEL MENU -->
+      <li class="menu-contact phone">
+        <a href="tel:+447440184221">📞 07440 184221</a>
+      </li>
 
-    <li class="menu-contact email">
-      <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
-    </li>
-  </ul>
-</nav>
+      <li class="menu-contact email">
+        <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -167,45 +169,78 @@
 
   <form action="send.php" method="post" class="quote-form">
 
-    <label>Full Name *</label>
-    <input type="text" name="name" required>
+    <!-- Honeypot field - hidden from users, catches bots -->
+    <input type="text" name="website" class="honeypot-field" tabindex="-1" autocomplete="off">
 
-    <label>Email *</label>
-    <input type="email" name="email" required>
+    <label for="name">Full Name *</label>
+    <input type="text" id="name" name="name" required aria-required="true">
 
-    <label>Phone *</label>
-    <input type="tel" name="phone" required>
+    <label for="email">Email *</label>
+    <input type="email" id="email" name="email" required aria-required="true">
 
-    <label>Service Required *</label>
-    <select name="service" required>
+    <label for="phone">Phone *</label>
+    <input type="tel" id="phone" name="phone" required aria-required="true" placeholder="07XXX XXXXXX">
+
+    <label for="service">Service Required *</label>
+    <select id="service" name="service" required aria-required="true">
       <option value="">Select a service</option>
-      <option>Telehandler Hire</option>
-      <option>Forklift Hire</option>
-      <option>Groundworks</option>
-      <option>Mini Digger & Dumper</option>
-      <option>Vehicle Box Services</option>
-      <option>Borehole Drilling</option>
+      <option value="Telehandler Hire">Telehandler Hire</option>
+      <option value="Forklift Hire">Forklift Hire</option>
+      <option value="Groundworks">Groundworks</option>
+      <option value="Mini Digger & Dumper">Mini Digger & Dumper</option>
+      <option value="Vehicle Box Services">Vehicle Box Services</option>
+      <option value="Borehole Drilling">Borehole Drilling</option>
     </select>
 
-    <label>Project Location</label>
-    <input type="text" name="location" placeholder="London">
+    <label for="location">Project Location</label>
+    <input type="text" id="location" name="location" placeholder="e.g. London, Enfield, Luton">
 
-    <label>Project Details</label>
-    <textarea name="message" rows="5"></textarea>
+    <label for="message">Project Details</label>
+    <textarea id="message" name="message" rows="5" placeholder="Tell us about your project requirements..."></textarea>
 
-    <button type="submit" class="button">Get a Quote</button>
+    <button type="submit" class="button">Get a Free Quote</button>
   </form>
 
   <div class="contact-details">
-    <p><strong>Email:</strong> info@gsgroupservices.co.uk</p>
-    <p><strong>Alternative Email:</strong> contact@gsgroupservices.co.uk</p>
-    <p><strong>Phone:</strong> <a href="tel:07440184221">07440 184221</a></p>
+    <p><strong>📞 Phone:</strong> <a href="tel:+447440184221">07440 184221</a></p>
+    <p><strong>✉️ Email:</strong> <a href="mailto:info@gsgroupservices.co.uk">info@gsgroupservices.co.uk</a></p>
+    <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/447440184221" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
   </div>
 </section>
 
 <footer>
-  <p>© GS Group Services – Plant Hire & Groundworks Specialists in London</p>
+  <div class="footer-content">
+    <p>© 2026 GS Group Services | Plant Hire & Groundworks Specialists in London</p>
+    <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+  </div>
 </footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/447440184221?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote%20for%20plant%20hire" 
+   class="whatsapp-float" 
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contact us on WhatsApp">
+  💬
+</a>
+
+<!-- Cookie Banner (GDPR UK Compliant) -->
+<div id="cookie-banner" class="cookie-banner">
+  <p>We use cookies to improve your experience on our website. 
+     <a href="privacy.html">Learn more about our Privacy Policy</a></p>
+  <button onclick="acceptCookies()" class="cookie-accept">Accept</button>
+</div>
+
+<script>
+// Cookie consent management
+if (!localStorage.getItem('cookiesAccepted')) {
+  document.getElementById('cookie-banner').style.display = 'flex';
+}
+function acceptCookies() {
+  localStorage.setItem('cookiesAccepted', 'true');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+</script>
 
 </body>
 </html>
