@@ -1,5 +1,4 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] !== "POST") { header("Location: contact.html"); exit; }
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
