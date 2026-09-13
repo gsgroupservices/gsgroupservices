@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.className="js";</script>
 
   <title>Thank You | GS Group Services</title>
 
@@ -11,70 +12,95 @@
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/nav.js" defer></script>
+  <script src="js/analytics.js" defer></script>
   <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <style>
-    .thank-you-section {
-      text-align: center;
-      padding: 80px 20px;
-      min-height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .thank-you-section h1 {
-      color: #0b1c2d;
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
-    .thank-you-section .checkmark {
-      font-size: 80px;
-      color: #4CAF50;
-      margin-bottom: 20px;
-    }
-    .thank-you-section p {
-      font-size: 18px;
-      max-width: 600px;
-      margin-bottom: 15px;
-      color: #444;
-    }
-    .thank-you-section .contact-info {
-      background: #f1f1f1;
-      padding: 20px 30px;
-      border-radius: 8px;
-      margin: 30px 0;
-    }
-    .thank-you-section .contact-info p {
-      margin: 8px 0;
-    }
-    .thank-you-section .button {
-      margin-top: 20px;
-    }
-  </style>
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GS Group Services">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Thank You | GS Group Services">
+  <meta property="og:description" content="Thank you for contacting GS Group Services. We have received your quote request and will respond shortly.">
+  <meta property="og:url" content="https://gsgroupservices.co.uk/thank-you">
+  <meta property="og:image" content="https://gsgroupservices.co.uk/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GS Group Services plant hire and groundworks site in London">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body>
 
 <header>
-  <div class="logo">
-    <a href="index.html">
-      <img src="images/logo.png" alt="GS Group Services">
-    </a>
+  <div class="header-inner">
+
+    <div class="logo">
+      <a href="/">
+        <img src="images/logo-header.png" alt="GS Group Services" width="180" height="74">
+      </a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-box" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
+
+    <nav class="main-nav" id="site-nav">
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+
+        <li class="has-mega">
+          <a href="/services">Services</a>
+          <button class="mega-toggle" type="button" aria-expanded="false" aria-controls="mega-services">
+            <span class="visually-hidden">Show services submenu</span>
+            <span class="mega-toggle-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="mega-menu" id="mega-services">
+            <div class="mega-column">
+              <span class="mega-title">Plant Hire with Operator</span>
+              <ul>
+                <li><a href="/telehandler-hire-london">Telehandler Hire London</a></li>
+                <li><a href="/forklift-hire-london">Forklift Hire London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Mini Digger &amp; Dumper London</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Groundworks</span>
+              <ul>
+                <li><a href="/groundworks-london">Groundworks London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Excavation &amp; Site Prep</a></li>
+                <li><a href="/borehole-drilling-london">Borehole Drilling</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Vehicle Services</span>
+              <ul>
+                <li><a href="/luton-van-box-installation-london">Luton Van Box Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Curtain-Side Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Vehicle Box Repairs</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="/london">London</a></li>
+        <li><a href="/contact">Contact</a></li>
+
+        <li class="menu-contact phone">
+          <a href="tel:+447459672693">📞 07459 672693</a>
+        </li>
+
+        <li class="menu-contact email">
+          <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
+        </li>
+      </ul>
+    </nav>
+
   </div>
-
-  <nav class="main-nav">
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="london.html">London</a></li>
-      <li><a href="contact.html">Contact</a></li>
-
-      <li class="menu-contact phone">
-        <a href="tel:+447440184221">📞 07440 184221</a>
-      </li>
-    </ul>
-  </nav>
 </header>
 
 <!-- THANK YOU CONTENT -->
@@ -93,20 +119,39 @@
   </p>
 
   <div class="contact-info">
-    <p><strong>📞 Phone:</strong> <a href="tel:+447440184221">07440 184221</a></p>
+    <p><strong>📞 Phone:</strong> <a href="tel:+447459672693">07459 672693</a></p>
     <p><strong>✉️ Email:</strong> <a href="mailto:info@gsgroupservices.co.uk">info@gsgroupservices.co.uk</a></p>
     <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/447459672693" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
   </div>
 
-  <a href="index.html" class="button">← Back to Homepage</a>
+  <a href="/" class="button">← Back to Homepage</a>
 </section>
 
 <footer>
   <div class="footer-content">
     <p>© 2026 GS Group Services | Plant Hire & Groundworks UK</p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+    <p><a href="/privacy">Privacy Policy</a> | <a href="/contact">Contact Us</a></p>
   </div>
 </footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/447459672693?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote" 
+   class="whatsapp-float" 
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contact us on WhatsApp">
+  💬
+</a>
+
+<!-- Cookie Banner (UK GDPR / PECR) -->
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent">
+  <p>We use cookies to understand how the site is used. Analytics cookies are only
+     set if you accept. <a href="/privacy">Read our Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject">Reject</button>
+    <button type="button" class="cookie-accept">Accept</button>
+  </div>
+</div>
 
 </body>
 </html>

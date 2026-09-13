@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.className="js";</script>
 
   <title>Privacy Policy | GS Group Services</title>
 
@@ -10,9 +11,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/nav.js" defer></script>
+  <script src="js/analytics.js" defer></script>
   <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <link rel="canonical" href="https://gsgroupservices.co.uk/privacy.html">
+  <link rel="canonical" href="https://gsgroupservices.co.uk/privacy">
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GS Group Services">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Privacy Policy | GS Group Services">
+  <meta property="og:description" content="Privacy Policy for GS Group Services. Learn how we collect, use and protect your personal data in compliance with UK GDPR.">
+  <meta property="og:url" content="https://gsgroupservices.co.uk/privacy">
+  <meta property="og:image" content="https://gsgroupservices.co.uk/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GS Group Services plant hire and groundworks site in London">
+  <meta name="twitter:card" content="summary_large_image">
 
   <style>
     .privacy-content {
@@ -51,24 +67,74 @@
 <body>
 
 <header>
-  <div class="logo">
-    <a href="index.html">
-      <img src="images/logo.png" alt="GS Group Services">
-    </a>
+  <div class="header-inner">
+
+    <div class="logo">
+      <a href="/">
+        <img src="images/logo-header.png" alt="GS Group Services" width="180" height="74">
+      </a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-box" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
+
+    <nav class="main-nav" id="site-nav">
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+
+        <li class="has-mega">
+          <a href="/services">Services</a>
+          <button class="mega-toggle" type="button" aria-expanded="false" aria-controls="mega-services">
+            <span class="visually-hidden">Show services submenu</span>
+            <span class="mega-toggle-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="mega-menu" id="mega-services">
+            <div class="mega-column">
+              <span class="mega-title">Plant Hire with Operator</span>
+              <ul>
+                <li><a href="/telehandler-hire-london">Telehandler Hire London</a></li>
+                <li><a href="/forklift-hire-london">Forklift Hire London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Mini Digger &amp; Dumper London</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Groundworks</span>
+              <ul>
+                <li><a href="/groundworks-london">Groundworks London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Excavation &amp; Site Prep</a></li>
+                <li><a href="/borehole-drilling-london">Borehole Drilling</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Vehicle Services</span>
+              <ul>
+                <li><a href="/luton-van-box-installation-london">Luton Van Box Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Curtain-Side Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Vehicle Box Repairs</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="/london">London</a></li>
+        <li><a href="/contact">Contact</a></li>
+
+        <li class="menu-contact phone">
+          <a href="tel:+447459672693">📞 07459 672693</a>
+        </li>
+
+        <li class="menu-contact email">
+          <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
+        </li>
+      </ul>
+    </nav>
+
   </div>
-
-  <nav class="main-nav">
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="london.html">London</a></li>
-      <li><a href="contact.html">Contact</a></li>
-
-      <li class="menu-contact phone">
-        <a href="tel:+447440184221">📞 07440 184221</a>
-      </li>
-    </ul>
-  </nav>
 </header>
 
 <!-- PRIVACY POLICY CONTENT -->
@@ -110,16 +176,30 @@
   </ul>
 
   <h2>4. Cookies</h2>
-  <p>Our website uses cookies to:</p>
-  <ul>
-    <li>Remember your cookie consent preference</li>
-    <li>Analyse website traffic (if analytics are enabled)</li>
-    <li>Improve website functionality</li>
-  </ul>
-  <p>
-    You can control cookies through your browser settings. Disabling cookies may 
-    affect some website functionality.
-  </p>
+    <p>Our website uses cookies and similar technologies for two purposes:</p>
+    <ul>
+      <li><strong>Essential:</strong> remembering your cookie choice. These are always set
+          and cannot be switched off, as the site would otherwise ask you on every visit.</li>
+      <li><strong>Analytics (optional):</strong> we use Google Analytics 4 to understand how
+          visitors find and use the site, so we can improve it. These cookies are
+          <strong>only set if you press &ldquo;Accept&rdquo;</strong> on our cookie banner.
+          If you press &ldquo;Reject&rdquo;, no analytics script is loaded at all.</li>
+    </ul>
+
+    <p>
+      Google Analytics collects information such as pages viewed, approximate location
+      and device type. Your IP address is anonymised. We never use it to identify you
+      personally. You can read Google&rsquo;s own explanation at
+      <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">
+      policies.google.com</a>.
+    </p>
+
+    <p>
+      You can change your mind at any time:
+      <a href="#" onclick="gsResetCookieChoice(); return false;">review your cookie choice</a>.
+      You can also control or delete cookies through your browser settings.
+    </p>
+
 
   <h2>5. Data Retention</h2>
   <p>
@@ -174,7 +254,7 @@
   <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
   <ul>
     <li><strong>Email:</strong> <a href="mailto:info@gsgroupservices.co.uk">info@gsgroupservices.co.uk</a></li>
-    <li><strong>Phone:</strong> <a href="tel:+447440184221">07440 184221</a></li>
+    <li><strong>Phone:</strong> <a href="tel:+447459672693">07459 672693</a></li>
     <li><strong>Website:</strong> <a href="https://gsgroupservices.co.uk">gsgroupservices.co.uk</a></li>
   </ul>
 
@@ -193,9 +273,28 @@
 <footer>
   <div class="footer-content">
     <p>© 2026 GS Group Services | Plant Hire & Groundworks UK</p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+    <p><a href="/privacy">Privacy Policy</a> | <a href="/contact">Contact Us</a></p>
   </div>
 </footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/447459672693?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote" 
+   class="whatsapp-float" 
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contact us on WhatsApp">
+  💬
+</a>
+
+<!-- Cookie Banner (UK GDPR / PECR) -->
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent">
+  <p>We use cookies to understand how the site is used. Analytics cookies are only
+     set if you accept. <a href="/privacy">Read our Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject">Reject</button>
+    <button type="button" class="cookie-accept">Accept</button>
+  </div>
+</div>
 
 </body>
 </html>

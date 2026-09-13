@@ -1,246 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+/* GS Group Services — navigazione mobile
+   Gestisce il menu hamburger e l'accordion della sezione Services.
+   Su desktop (>768px) il menu è sempre visibile e questo script non interferisce. */
 
-  <title>Contact Us | Plant Hire & Groundworks London | GS Group Services</title>
+(function () {
+  'use strict';
 
-  <meta name="description" content="Contact GS Group Services for professional telehandler hire, forklift hire with operator, groundworks and construction services in London. Get a free quote today.">
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('site-nav');
+  if (!toggle || !nav) return;
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  var megaToggle = document.querySelector('.mega-toggle');
+  var mega = document.getElementById('mega-services');
+  var desktop = window.matchMedia('(min-width: 769px)');
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  function setNav(open) {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 
-  <link rel="canonical" href="https://gsgroupservices.co.uk/contact.html">
+  function setMega(open) {
+    if (!mega || !megaToggle) return;
+    mega.classList.toggle('is-open', open);
+    megaToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 
-  <!-- Google Schema (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "GS Group Services",
-    "url": "https://gsgroupservices.co.uk",
-    "logo": "https://gsgroupservices.co.uk/logo.png",
-    "email": "info@gsgroupservices.co.uk",
-    "telephone": "+447440184221",
-    "description": "Plant hire and groundworks services in London including telehandler hire with operator, forklift hire with operator, excavation and vehicle body services.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "GB"
-    },
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "London"
+  toggle.addEventListener('click', function () {
+    setNav(!nav.classList.contains('is-open'));
+  });
+
+  if (megaToggle && mega) {
+    megaToggle.addEventListener('click', function () {
+      setMega(!mega.classList.contains('is-open'));
+    });
+  }
+
+  /* Un link cliccato chiude il pannello: serve per i link con ancora (#telehandler),
+     dove non c'è un cambio pagina a chiuderlo da solo. */
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a') && !desktop.matches) {
+      setNav(false);
+      setMega(false);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+      setNav(false);
+      setMega(false);
+      toggle.focus();
+    }
+  });
+
+  /* Tornando a desktop si azzera lo stato, altrimenti il menu
+     resterebbe "aperto" in un layout dove quel concetto non esiste. */
+  function onBreakpoint(e) {
+    if (e.matches) {
+      setNav(false);
+      setMega(false);
     }
   }
-  </script>
-</head>
-
-<body>
-
-<header>
- <div class="logo">
-  <a href="index.html">
-    <img src="images/logo.png" alt="GS Group Services">
-  </a>
-</div>
-
-  <nav class="main-nav">
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-
-      <li class="has-mega">
-        <a href="services.html">Services</a>
-
-        <div class="mega-menu">
-          <div class="mega-column">
-            <h4>Plant Hire with Operator</h4>
-            <ul>
-              <li><a href="telehandler-hire-london.html">Telehandler Hire London</a></li>
-              <li><a href="forklift-hire-london.html">Forklift Hire London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Mini Digger & Dumper London</a></li>
-            </ul>
-          </div>
-
-          <div class="mega-column">
-            <h4>Groundworks</h4>
-            <ul>
-              <li><a href="groundworks-london.html">Groundworks London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Excavation & Site Prep</a></li>
-              <li><a href="borehole-drilling-london.html">Borehole Drilling</a></li>
-            </ul>
-          </div>
-
-          <div class="mega-column">
-            <h4>Vehicle Services</h4>
-            <ul>
-              <li><a href="luton-van-box-installation-london.html">Luton Van Box Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Curtain-Side Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Vehicle Box Repairs</a></li>
-            </ul>
-          </div>
-        </div>
-      </li>
-
-      <li><a href="london.html">London</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <!-- CONTATTI NEL MENU -->
-      <li class="menu-contact phone">
-        <a href="tel:+447440184221">📞 07440 184221</a>
-      </li>
-
-      <li class="menu-contact email">
-        <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
-      </li>
-    </ul>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <h1>Plant Hire & Groundworks Services in London</h1>
-  <p>
-    Telehandler and forklift hire with operator, groundworks, excavation and
-    specialist construction services across Greater London.
-  </p>
-</section>
-
-<!-- INTRO -->
-<section class="content">
-  <h2>Professional Construction Support Across London</h2>
-  <p>
-    GS Group Services provides reliable plant hire and groundworks solutions
-    throughout London. We support construction companies, contractors and
-    commercial clients with experienced operators and modern equipment.
-  </p>
-</section>
-
-<!-- SERVICES -->
-<section class="services">
-  <article class="service">
-    <h3>Telehandler Hire with Operator in London</h3>
-    <p>
-      Our <a href="telehandler-hire-london.html">telehandler hire with operator</a>
-      service delivers safe and efficient lifting solutions for construction
-      sites across London.
-    </p>
-  </article>
-
-  <article class="service">
-    <h3>Forklift Hire with Operator in London</h3>
-    <p>
-      We provide <a href="forklift-hire-london.html">forklift hire with operator</a>
-      for warehouses, industrial units and construction projects.
-    </p>
-  </article>
-
-  <article class="service">
-    <h3>Groundworks & Excavation</h3>
-    <p>
-      Our <a href="groundworks-london.html">groundworks services</a> include
-      excavation, trenching and site preparation using modern mini diggers
-      and dumpers.
-    </p>
-  </article>
-
-  <article class="service">
-    <h3>Vehicle Box & Curtain-Side Services</h3>
-    <p>
-      Specialist Luton van box installation, curtain-side conversions
-      and commercial vehicle body repairs across London.
-    </p>
-  </article>
-
-  <article class="service">
-    <h3>Borehole & Water Well Drilling</h3>
-    <p>
-      Professional borehole and water well drilling services for residential,
-      agricultural and commercial projects across the UK.
-    </p>
-  </article>
-</section>
-
-<!-- GET A QUOTE -->
-<section class="contact">
-  <h2>Get a Quote</h2>
-  <p>Contact us today for plant hire or groundworks services in London.</p>
-
-  <form action="https://formspree.io/f/mzdazrgn" method="POST">
-
-    <!-- Honeypot field - hidden from users, catches bots -->
-    <input type="text" name="website" class="honeypot-field" tabindex="-1" autocomplete="off">
-
-    <label for="name">Full Name *</label>
-    <input type="text" id="name" name="name" required aria-required="true">
-
-    <label for="email">Email *</label>
-    <input type="email" id="email" name="email" required aria-required="true">
-
-    <label for="phone">Phone *</label>
-    <input type="tel" id="phone" name="phone" required aria-required="true" placeholder="07XXX XXXXXX">
-
-    <label for="service">Service Required *</label>
-    <select id="service" name="service" required aria-required="true">
-      <option value="">Select a service</option>
-      <option value="Telehandler Hire">Telehandler Hire</option>
-      <option value="Forklift Hire">Forklift Hire</option>
-      <option value="Groundworks">Groundworks</option>
-      <option value="Mini Digger & Dumper">Mini Digger & Dumper</option>
-      <option value="Vehicle Box Services">Vehicle Box Services</option>
-      <option value="Borehole Drilling">Borehole Drilling</option>
-    </select>
-
-    <label for="location">Project Location</label>
-    <input type="text" id="location" name="location" placeholder="e.g. London, Enfield, Luton">
-
-    <label for="message">Project Details</label>
-    <textarea id="message" name="message" rows="5" placeholder="Tell us about your project requirements..."></textarea>
-
-    <button type="submit" class="button">Get a Free Quote</button>
-  </form>
-
-  <div class="contact-details">
-    <p><strong>📞 Phone:</strong> <a href="tel:+447440184221">07440 184221</a></p>
-    <p><strong>✉️ Email:</strong> <a href="mailto:info@gsgroupservices.co.uk">info@gsgroupservices.co.uk</a></p>
-    <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/447459672693" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <p>© 2026 GS Group Services | Plant Hire & Groundworks Specialists in London</p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
-  </div>
-</footer>
-
-<!-- WhatsApp Float Button -->
-<a href="https://wa.me/447459672693?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote%20for%20plant%20hire" 
-   class="whatsapp-float" 
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Contact us on WhatsApp">
-  💬
-</a>
-
-<!-- Cookie Banner (GDPR UK Compliant) -->
-<div id="cookie-banner" class="cookie-banner">
-  <p>We use cookies to improve your experience on our website. 
-     <a href="privacy.html">Learn more about our Privacy Policy</a></p>
-  <button onclick="acceptCookies()" class="cookie-accept">Accept</button>
-</div>
-
-<script>
-// Cookie consent management
-if (!localStorage.getItem('cookiesAccepted')) {
-  document.getElementById('cookie-banner').style.display = 'flex';
-}
-function acceptCookies() {
-  localStorage.setItem('cookiesAccepted', 'true');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-</script>
-
-</body>
-</html>
+  if (desktop.addEventListener) {
+    desktop.addEventListener('change', onBreakpoint);
+  } else if (desktop.addListener) {
+    desktop.addListener(onBreakpoint);
+  }
+})();

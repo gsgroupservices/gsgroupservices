@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <script>document.documentElement.className="js";</script>
-  <title>Services | GS Group Services</title>
-  <meta name="description" content="Telehandler and forklift hire with operator, groundworks, vehicle box services and borehole drilling across the UK.">
+
+  <title>Forklift Hire with Operator in London | GS Group Services</title>
+
+  <meta name="description" content="Reliable forklift hire with operator in London. GS Group Services provides certified forklift operators for construction, industrial and warehouse projects across Greater London.">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london.webp" media="(min-width: 769px)">
   <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london-mobile.webp" media="(max-width: 768px)">
@@ -14,15 +18,15 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://gsgroupservices.co.uk/services">
+  <link rel="canonical" href="https://gsgroupservices.co.uk/forklift-hire-london">
 
   <!-- Open Graph / social -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="GS Group Services">
   <meta property="og:locale" content="en_GB">
-  <meta property="og:title" content="Our Services | GS Group Services">
-  <meta property="og:description" content="Telehandler and forklift hire with operator, groundworks, vehicle box services and borehole drilling across the UK.">
-  <meta property="og:url" content="https://gsgroupservices.co.uk/services">
+  <meta property="og:title" content="Forklift Hire with Operator in London | GS Group Services">
+  <meta property="og:description" content="Reliable forklift hire with operator in London. GS Group Services provides certified forklift operators for construction, industrial and warehouse projects across Greater London.">
+  <meta property="og:url" content="https://gsgroupservices.co.uk/forklift-hire-london">
   <meta property="og:image" content="https://gsgroupservices.co.uk/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -67,66 +71,20 @@
         "closes": "23:59"
       }
     ],
-    "description": "Telehandler and forklift hire with operator, groundworks, mini digger and dumper hire, Luton van box installation and borehole drilling across London and the UK.",
-    "areaServed": [
-      {
-        "@type": "AdministrativeArea",
-        "name": "London"
-      },
-      {
-        "@type": "Country",
-        "name": "United Kingdom"
-      }
-    ],
+    "description": "Forklift hire with operator in London for construction, industrial and warehouse projects.",
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "London"
+    },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Construction & Plant Hire Services",
+      "name": "Forklift Hire Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Telehandler Hire with Operator",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
             "name": "Forklift Hire with Operator",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Groundworks & Excavation",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Mini Digger & Dumper Hire",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Luton Van Box Installation & Repairs",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Borehole & Water Well Drilling",
             "areaServed": "London, UK"
           }
         }
@@ -209,48 +167,88 @@
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <h1>Our Services</h1>
-  <p>Professional plant hire, groundworks and vehicle services across the UK.</p>
+  <h1>Forklift Hire with Operator in London</h1>
+  <p>
+    Certified forklift hire services with experienced operators for
+    construction sites, warehouses and industrial projects across London.
+  </p>
 </section>
 
+<!-- INTRO -->
+<section class="content">
+  <h2>Professional Forklift Services Across Greater London</h2>
+
+  <p>
+    GS Group Services offers reliable
+    <strong>forklift hire with operator in London</strong>,
+    supporting logistics, material handling and site operations.
+    Our services are often combined with
+    <a href="/telehandler-hire-london">telehandler hire</a>
+    and
+    <a href="/groundworks-london">groundworks services</a>
+    for complete site solutions.
+  </p>
+
+  <p>
+    We operate across Greater London, providing flexible hire options,
+    modern forklift equipment and fully trained operators in compliance
+    with UK health and safety regulations.
+  </p>
+</section>
+
+<!-- SERVICES -->
 <section class="services">
-
-  <article id="telehandler" class="service">
-    <h2>Telehandler with Operator</h2>
-    <p>Reliable telehandler hire with experienced operators for construction and commercial sites.</p>
-    <p>Available for short and long-term hire, supporting projects of all sizes.</p>
+  <article class="service">
+    <h3>Forklift Hire with Certified Operator</h3>
+    <p>
+      Our forklift hire includes CPCS/CSCS certified operators who ensure
+      safe and efficient lifting operations on all types of sites.
+    </p>
   </article>
 
-  <article id="forklift" class="service">
-    <h2>Forklift with Operator</h2>
-    <p>Professional forklift services for loading, unloading and on-site logistics.</p>
-    <p>Ideal for warehouses, construction sites and industrial environments.</p>
+  <article class="service">
+    <h3>Warehouse, Industrial & Construction Use</h3>
+    <p>
+      Forklift services suitable for warehouses, factories and construction
+      sites, handling pallets, materials and heavy loads efficiently.
+    </p>
   </article>
 
-  <article id="groundworks" class="service">
-    <h2>Groundworks (Mini Digger & Dumper)</h2>
-    <p>Efficient groundworks services including excavation, trenching and site preparation.</p>
-    <p>Carried out using modern mini diggers and dumpers.</p>
+  <article class="service">
+    <h3>Fully Insured & Safety Compliant</h3>
+    <p>
+      All equipment is fully insured and maintained to high standards,
+      ensuring compliance with UK regulations and safe operation on site.
+    </p>
   </article>
+</section>
 
-  <article id="vehicle" class="service">
-    <h2>Vehicle Box & Curtain-Side Services</h2>
-    <p>Luton box replacement, curtain-side installation and vehicle body conversions.</p>
-    <p>Practical solutions for commercial and logistics vehicles.</p>
-  </article>
+<!-- AREAS -->
+<section class="areas">
+  <h2>Forklift Hire Areas Covered</h2>
+  <p>
+    We provide forklift hire with operator throughout Greater London,
+    including North, South, East and West London.
+    Services are also available in surrounding areas such as Luton,
+    Watford and St Albans.
+  </p>
+</section>
 
-  <article id="borehole" class="service">
-    <h2>Borehole & Water Well Drilling</h2>
-    <p>Specialist borehole and water well drilling services for private and commercial use.</p>
-    <p>Delivered by experienced teams in compliance with UK standards.</p>
-  </article>
-
+<!-- CTA -->
+<section class="cta">
+  <h2>Need Forklift Hire in London?</h2>
+  <p>
+    Contact GS Group Services today for a fast and competitive quote for
+    forklift hire with operator in London.
+  </p>
+  <a href="/contact" class="button">Request a Quote</a>
 </section>
 
 <footer>
   <div class="footer-content">
-  <p>© GS Group Services – Plant Hire & Groundworks Across the UK</p>
+  <p>© GS Group Services | Forklift Hire with Operator in London</p>
   </div>
 </footer>
 

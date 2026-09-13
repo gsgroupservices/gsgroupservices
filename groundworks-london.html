@@ -1,31 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.className="js";</script>
 
-  <title>Groundworks & Excavation Services in London | GS Group Services</title>
+  <title>Borehole & Water Well Drilling in London | GS Group Services</title>
 
-  <meta name="description" content="Professional groundworks and excavation services in London. Mini digger and dumper hire with operator for construction, foundations, trenching and site preparation.">
+  <meta name="description" content="Professional borehole and water well drilling services in London and across the UK. GS Group Services delivers reliable drilling solutions for residential, agricultural and commercial projects.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london.webp" media="(min-width: 769px)">
+  <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london-mobile.webp" media="(max-width: 768px)">
+  <script src="js/nav.js" defer></script>
+  <script src="js/analytics.js" defer></script>
   <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
-  <!-- Google Schema -->
+  <link rel="canonical" href="https://gsgroupservices.co.uk/borehole-drilling-london">
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GS Group Services">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Borehole & Water Well Drilling in London | GS Group Services">
+  <meta property="og:description" content="Professional borehole and water well drilling services in London and across the UK. GS Group Services delivers reliable drilling solutions for residential, agricultural and commercial projects.">
+  <meta property="og:url" content="https://gsgroupservices.co.uk/borehole-drilling-london">
+  <meta property="og:image" content="https://gsgroupservices.co.uk/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GS Group Services plant hire and groundworks site in London">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "GS Group Services",
     "url": "https://gsgroupservices.co.uk",
-    "logo": "https://gsgroupservices.co.uk/logo.png",
-    "description": "GS Group Services provides telehandler hire with operator, forklift hire with operator, groundworks, mini digger and dumper services, Luton van box installation and borehole drilling across London and the UK.",
+    "logo": "https://gsgroupservices.co.uk/images/logo.png",
+    "image": "https://gsgroupservices.co.uk/images/og-image.jpg",
+    "email": "info@gsgroupservices.co.uk",
+    "telephone": "+447459672693",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "62 Fulmer Road",
+      "addressLocality": "London",
+      "postalCode": "E16 3TF",
       "addressCountry": "GB"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.5145538,
+      "longitude": 0.0407922
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    ],
+    "description": "Borehole and water well drilling services in London and the UK for residential, agricultural and commercial projects.",
     "areaServed": [
       {
         "@type": "AdministrativeArea",
@@ -36,57 +81,16 @@
         "name": "United Kingdom"
       }
     ],
-    "sameAs": [],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Construction & Plant Hire Services",
+      "name": "Borehole Drilling Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Telehandler Hire with Operator",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Forklift Hire with Operator",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Groundworks & Excavation",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Mini Digger & Dumper Hire",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Luton Van Box Installation & Repairs",
-            "areaServed": "London, UK"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
             "name": "Borehole & Water Well Drilling",
-            "areaServed": "United Kingdom"
+            "areaServed": "London, UK"
           }
         }
       ]
@@ -98,154 +102,170 @@
 <body>
 
 <header>
-  <div class="logo">
-  <a href="index.html">
-    <img src="images/logo.png" alt="GS Group Services">
-  </a>
-</div>
+  <div class="header-inner">
 
-  <nav class="main-nav">
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
+    <div class="logo">
+      <a href="/">
+        <img src="images/logo-header.png" alt="GS Group Services" width="180" height="74">
+      </a>
+    </div>
 
-      <li class="has-mega">
-        <a href="services.html">Services</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-box" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
 
-        <div class="mega-menu">
-          <div class="mega-column">
-            <h4>Plant Hire with Operator</h4>
-            <ul>
-              <li><a href="telehandler-hire-london.html">Telehandler Hire London</a></li>
-              <li><a href="forklift-hire-london.html">Forklift Hire London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Mini Digger & Dumper London</a></li>
-            </ul>
+    <nav class="main-nav" id="site-nav">
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+
+        <li class="has-mega">
+          <a href="/services">Services</a>
+          <button class="mega-toggle" type="button" aria-expanded="false" aria-controls="mega-services">
+            <span class="visually-hidden">Show services submenu</span>
+            <span class="mega-toggle-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="mega-menu" id="mega-services">
+            <div class="mega-column">
+              <span class="mega-title">Plant Hire with Operator</span>
+              <ul>
+                <li><a href="/telehandler-hire-london">Telehandler Hire London</a></li>
+                <li><a href="/forklift-hire-london">Forklift Hire London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Mini Digger &amp; Dumper London</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Groundworks</span>
+              <ul>
+                <li><a href="/groundworks-london">Groundworks London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Excavation &amp; Site Prep</a></li>
+                <li><a href="/borehole-drilling-london">Borehole Drilling</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Vehicle Services</span>
+              <ul>
+                <li><a href="/luton-van-box-installation-london">Luton Van Box Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Curtain-Side Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Vehicle Box Repairs</a></li>
+              </ul>
+            </div>
           </div>
+        </li>
 
-          <div class="mega-column">
-            <h4>Groundworks</h4>
-            <ul>
-              <li><a href="groundworks-london.html">Groundworks London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Excavation & Site Preparation</a></li>
-              <li><a href="borehole-drilling-london.html">Borehole Drilling</a></li>
-            </ul>
-          </div>
+        <li><a href="/london">London</a></li>
+        <li><a href="/contact">Contact</a></li>
 
-          <div class="mega-column">
-            <h4>Vehicle Services</h4>
-            <ul>
-              <li><a href="luton-van-box-installation-london.html">Luton Van Box Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Curtain-Side Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Vehicle Box Repairs</a></li>
-            </ul>
-          </div>
-        </div>
-      </li>
+        <li class="menu-contact phone">
+          <a href="tel:+447459672693">📞 07459 672693</a>
+        </li>
 
-      <li><a href="london.html">London</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <!-- CONTATTI NEL MENU -->
-      <li class="menu-contact phone">
-        <a href="tel:+447440184221">📞 07440 184221</a>
-      </li>
+        <li class="menu-contact email">
+          <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
+        </li>
+      </ul>
+    </nav>
 
-      <li class="menu-contact email">
-        <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
-      </li>
-    </ul>
-  </nav>
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Groundworks & Excavation Services in London</h1>
+  <h1>Borehole & Water Well Drilling in London</h1>
   <p>
-    Professional groundworks, excavation and site preparation services
-    across Greater London using modern equipment and skilled operators.
+    Professional borehole and water well drilling services for residential,
+    agricultural and commercial projects across London and the UK.
   </p>
 </section>
 
 <!-- INTRO -->
 <section class="content">
-  <h2>Reliable Groundworks Contractors in London</h2>
+  <h2>Expert Borehole Drilling Services</h2>
 
   <p>
-    Our groundworks services are often combined with
-    <a href="mini-digger-dumper-hire-london.html">mini digger and dumper hire</a>
-    and supported by
-    <a href="telehandler-hire-london.html">telehandler services</a>
-    for efficient site operations across London.
+    GS Group Services provides professional borehole and water well drilling
+    solutions across London and the wider UK. Our experienced team delivers
+    reliable drilling services for private water supplies, irrigation systems
+    and commercial applications.
   </p>
 
   <p>
-    Our team operates across Greater London, delivering high-quality groundworks
-    using mini diggers and dumpers for projects of all sizes.
+    Combined with our
+    <a href="/groundworks-london">groundworks services</a>
+    and
+    <a href="/mini-digger-dumper-hire-london">mini digger hire</a>,
+    we offer complete site solutions for projects requiring water access
+    or geotechnical drilling.
   </p>
 </section>
 
 <!-- SERVICES -->
 <section class="services">
   <article class="service">
-    <h3>Excavation & Trenching</h3>
+    <h3>Residential Borehole Drilling</h3>
     <p>
-      We carry out excavation and trenching works for foundations,
-      drainage, utilities and infrastructure projects across London.
+      Private water supply solutions for homes, estates and rural properties.
+      Reduce water bills and secure an independent water source.
     </p>
   </article>
 
   <article class="service">
-    <h3>Mini Digger Hire with Operator</h3>
+    <h3>Agricultural Water Wells</h3>
     <p>
-      Our mini digger services are ideal for restricted-access sites,
-      residential projects and commercial developments throughout London.
+      Irrigation and livestock water supply solutions for farms and
+      agricultural operations across the UK.
     </p>
   </article>
 
   <article class="service">
-    <h3>Dumper Services</h3>
+    <h3>Commercial & Industrial Drilling</h3>
     <p>
-      We provide dumper services for efficient material transport on site,
-      improving productivity and site safety during groundworks operations.
+      Large-scale borehole drilling for commercial premises, industrial
+      sites and construction projects requiring water access.
     </p>
   </article>
 
   <article class="service">
-    <h3>Site Preparation & Foundations</h3>
+    <h3>Geotechnical Investigations</h3>
     <p>
-      GS Group Services prepares sites for construction by delivering
-      accurate groundworks, levelling and foundation preparation services.
+      Site investigation drilling to assess ground conditions before
+      construction, supporting structural engineers and developers.
     </p>
   </article>
 </section>
 
 <!-- AREAS -->
 <section class="areas">
-  <h2>Groundworks Areas Covered in London</h2>
+  <h2>Borehole Drilling Areas Covered</h2>
   <p>
-    Our groundworks and excavation services are available across all areas
-    of Greater London, including North London, South London, East London
-    and West London. We also operate in surrounding areas such as Luton,
-    Watford and nearby locations.
+    We provide borehole drilling services across Greater London and throughout
+    the UK. Our team operates in urban, suburban and rural locations,
+    adapting equipment and techniques to suit each site's requirements.
   </p>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-  <h2>Need Groundworks Services in London?</h2>
+  <h2>Need Borehole Drilling Services?</h2>
   <p>
-    Contact GS Group Services today to discuss your groundworks and excavation
-    requirements and receive a fast, competitive quote.
+    Contact GS Group Services today to discuss your borehole drilling
+    requirements and receive a professional assessment and quote.
   </p>
-  <a href="contact.html" class="button">Request a Quote</a>
+  <a href="/contact" class="button">Request a Quote</a>
 </section>
 
 <footer>
   <div class="footer-content">
-  <p>© GS Group Services | Groundworks & Excavation London</p>
+    <p>© 2026 GS Group Services | Borehole & Water Well Drilling UK</p>
+    <p><a href="/privacy">Privacy Policy</a> | <a href="/contact">Contact Us</a></p>
   </div>
 </footer>
 
 <!-- WhatsApp Float Button -->
-<a href="https://wa.me/447459672693?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote" 
+<a href="https://wa.me/447459672693?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote%20for%20borehole%20drilling" 
    class="whatsapp-float" 
    target="_blank"
    rel="noopener noreferrer"
@@ -253,22 +273,15 @@
   💬
 </a>
 
-<!-- Cookie Banner (GDPR UK Compliant) -->
-<div id="cookie-banner" class="cookie-banner">
-  <p>We use cookies to improve your experience on our website. 
-     <a href="privacy.html">Learn more about our Privacy Policy</a></p>
-  <button onclick="acceptCookies()" class="cookie-accept">Accept</button>
+<!-- Cookie Banner (UK GDPR / PECR) -->
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent">
+  <p>We use cookies to understand how the site is used. Analytics cookies are only
+     set if you accept. <a href="/privacy">Read our Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject">Reject</button>
+    <button type="button" class="cookie-accept">Accept</button>
+  </div>
 </div>
-
-<script>
-if (!localStorage.getItem('cookiesAccepted')) {
-  document.getElementById('cookie-banner').style.display = 'flex';
-}
-function acceptCookies() {
-  localStorage.setItem('cookiesAccepted', 'true');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-</script>
 
 </body>
 </html>

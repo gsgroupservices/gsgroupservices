@@ -1,246 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+/* GS Group Services — consenso cookie e Google Analytics 4
+   -------------------------------------------------------------
+   GA4 viene caricato SOLO dopo un consenso esplicito.
+   Finché il visitatore non sceglie, nessuno script di terze parti
+   viene inserito e nessun cookie di analisi viene scritto.
 
-  <title>Borehole & Water Well Drilling in London | GS Group Services</title>
+   Scelta memorizzata in localStorage sotto 'gsCookieConsent':
+     'granted' → GA4 attivo
+     'denied'  → nessun tracciamento, il banner non ricompare
+*/
 
-  <meta name="description" content="Professional borehole and water well drilling services in London and across the UK. GS Group Services delivers reliable drilling solutions for residential, agricultural and commercial projects.">
+(function () {
+  'use strict';
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  var GA_ID = 'G-3YT6HTNT11';
+  var KEY = 'gsCookieConsent';
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="images/favicon.png">
-
-  <link rel="canonical" href="https://gsgroupservices.co.uk/borehole-drilling-london.html">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Borehole & Water Well Drilling London | GS Group Services">
-  <meta property="og:description" content="Professional borehole drilling services for residential, agricultural and commercial projects across London and the UK.">
-  <meta property="og:url" content="https://gsgroupservices.co.uk/borehole-drilling-london.html">
-  <meta property="og:type" content="website">
-
-  <!-- Google Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "GS Group Services",
-    "url": "https://gsgroupservices.co.uk",
-    "logo": "https://gsgroupservices.co.uk/images/logo.png",
-    "description": "Borehole and water well drilling services in London and the UK for residential, agricultural and commercial projects.",
-    "telephone": "+447440184221",
-    "email": "info@gsgroupservices.co.uk",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "GB"
-    },
-    "areaServed": [
-      {
-        "@type": "AdministrativeArea",
-        "name": "London"
-      },
-      {
-        "@type": "Country",
-        "name": "United Kingdom"
-      }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Borehole Drilling Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Borehole & Water Well Drilling",
-            "areaServed": "London, UK"
-          }
-        }
-      ]
-    }
+  function read() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
-  </script>
-</head>
 
-<body>
+  function write(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) { /* storage bloccato: vale per questa sessione */ }
+  }
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <img src="images/logo.png" alt="GS Group Services">
-    </a>
-  </div>
+  function loadAnalytics() {
+    if (window.__gsAnalyticsLoaded) return;
+    window.__gsAnalyticsLoaded = true;
 
-  <nav class="main-nav">
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
 
-      <li class="has-mega">
-        <a href="services.html">Services</a>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID, { anonymize_ip: true });
+  }
 
-        <div class="mega-menu">
-          <div class="mega-column">
-            <h4>Plant Hire with Operator</h4>
-            <ul>
-              <li><a href="telehandler-hire-london.html">Telehandler Hire London</a></li>
-              <li><a href="forklift-hire-london.html">Forklift Hire London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Mini Digger & Dumper London</a></li>
-            </ul>
-          </div>
+  function init() {
+    var banner = document.getElementById('cookie-banner');
+    var saved = read();
 
-          <div class="mega-column">
-            <h4>Groundworks</h4>
-            <ul>
-              <li><a href="groundworks-london.html">Groundworks London</a></li>
-              <li><a href="mini-digger-dumper-hire-london.html">Excavation & Site Prep</a></li>
-              <li><a href="borehole-drilling-london.html">Borehole Drilling</a></li>
-            </ul>
-          </div>
+    if (saved === 'granted') { loadAnalytics(); return; }
+    if (saved === 'denied') return;
+    if (!banner) return;
 
-          <div class="mega-column">
-            <h4>Vehicle Services</h4>
-            <ul>
-              <li><a href="luton-van-box-installation-london.html">Luton Van Box Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Curtain-Side Installation</a></li>
-              <li><a href="luton-van-box-installation-london.html">Vehicle Box Repairs</a></li>
-            </ul>
-          </div>
-        </div>
-      </li>
+    function decide(value) {
+      write(value);
+      banner.classList.remove('is-visible');
+      if (value === 'granted') loadAnalytics();
+    }
 
-      <li><a href="london.html">London</a></li>
-      <li><a href="contact.html">Contact</a></li>
+    var accept = banner.querySelector('.cookie-accept');
+    var reject = banner.querySelector('.cookie-reject');
+    if (accept) accept.addEventListener('click', function () { decide('granted'); });
+    if (reject) reject.addEventListener('click', function () { decide('denied'); });
 
-      <li class="menu-contact phone">
-        <a href="tel:+447440184221">📞 07440 184221</a>
-      </li>
+    banner.classList.add('is-visible');
+  }
 
-      <li class="menu-contact email">
-        <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
-      </li>
-    </ul>
-  </nav>
-</header>
+  /* Permette di ripresentare il banner da un link nella privacy policy */
+  window.gsResetCookieChoice = function () {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    location.reload();
+  };
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Borehole & Water Well Drilling in London</h1>
-  <p>
-    Professional borehole and water well drilling services for residential,
-    agricultural and commercial projects across London and the UK.
-  </p>
-</section>
-
-<!-- INTRO -->
-<section class="content">
-  <h2>Expert Borehole Drilling Services</h2>
-
-  <p>
-    GS Group Services provides professional borehole and water well drilling
-    solutions across London and the wider UK. Our experienced team delivers
-    reliable drilling services for private water supplies, irrigation systems
-    and commercial applications.
-  </p>
-
-  <p>
-    Combined with our
-    <a href="groundworks-london.html">groundworks services</a>
-    and
-    <a href="mini-digger-dumper-hire-london.html">mini digger hire</a>,
-    we offer complete site solutions for projects requiring water access
-    or geotechnical drilling.
-  </p>
-</section>
-
-<!-- SERVICES -->
-<section class="services">
-  <article class="service">
-    <h3>Residential Borehole Drilling</h3>
-    <p>
-      Private water supply solutions for homes, estates and rural properties.
-      Reduce water bills and secure an independent water source.
-    </p>
-  </article>
-
-  <article class="service">
-    <h3>Agricultural Water Wells</h3>
-    <p>
-      Irrigation and livestock water supply solutions for farms and
-      agricultural operations across the UK.
-    </p>
-  </article>
-
-  <article class="service">
-    <h3>Commercial & Industrial Drilling</h3>
-    <p>
-      Large-scale borehole drilling for commercial premises, industrial
-      sites and construction projects requiring water access.
-    </p>
-  </article>
-
-  <article class="service">
-    <h3>Geotechnical Investigations</h3>
-    <p>
-      Site investigation drilling to assess ground conditions before
-      construction, supporting structural engineers and developers.
-    </p>
-  </article>
-</section>
-
-<!-- AREAS -->
-<section class="areas">
-  <h2>Borehole Drilling Areas Covered</h2>
-  <p>
-    We provide borehole drilling services across Greater London and throughout
-    the UK. Our team operates in urban, suburban and rural locations,
-    adapting equipment and techniques to suit each site's requirements.
-  </p>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <h2>Need Borehole Drilling Services?</h2>
-  <p>
-    Contact GS Group Services today to discuss your borehole drilling
-    requirements and receive a professional assessment and quote.
-  </p>
-  <a href="contact.html" class="button">Request a Quote</a>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <p>© 2026 GS Group Services | Borehole & Water Well Drilling UK</p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
-  </div>
-</footer>
-
-<!-- WhatsApp Float Button -->
-<a href="https://wa.me/447459672693?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote%20for%20borehole%20drilling" 
-   class="whatsapp-float" 
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Contact us on WhatsApp">
-  💬
-</a>
-
-<!-- Cookie Banner -->
-<div id="cookie-banner" class="cookie-banner">
-  <p>We use cookies to improve your experience on our website. 
-     <a href="privacy.html">Learn more</a></p>
-  <button onclick="acceptCookies()" class="cookie-accept">Accept</button>
-</div>
-
-<script>
-// Cookie consent
-if (!localStorage.getItem('cookiesAccepted')) {
-  document.getElementById('cookie-banner').style.display = 'flex';
-}
-function acceptCookies() {
-  localStorage.setItem('cookiesAccepted', 'true');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-</script>
-
-</body>
-</html>
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

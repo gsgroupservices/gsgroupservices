@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.className="js";</script>
 
-  <title>GS Group Services | Telehandler, Forklift & Plant Hire in London & UK</title>
+  <title>Contact Us | Plant Hire & Groundworks London | GS Group Services</title>
 
-  <meta name="description" content="GS Group Services provides professional telehandler and forklift hire with operator, groundworks, vehicle box installation and borehole drilling services across London and the UK.">
+  <meta name="description" content="Contact GS Group Services for professional telehandler hire, forklift hire with operator, groundworks and construction services in London. Get a free quote today.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london.webp" media="(min-width: 769px)">
+  <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london-mobile.webp" media="(max-width: 768px)">
+  <script src="js/nav.js" defer></script>
+  <script src="js/analytics.js" defer></script>
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://gsgroupservices.co.uk/">
+  <link rel="canonical" href="https://gsgroupservices.co.uk/contact">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="GS Group Services | Plant Hire London">
-  <meta property="og:description" content="Professional telehandler, forklift hire with operator, groundworks and construction services across London and the UK.">
-  <meta property="og:url" content="https://gsgroupservices.co.uk/">
+  <!-- Open Graph / social -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GS Group Services">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Get a Quote | GS Group Services">
+  <meta property="og:description" content="Contact GS Group Services for professional telehandler hire, forklift hire with operator, groundworks and construction services in London. Get a free quote today.">
+  <meta property="og:url" content="https://gsgroupservices.co.uk/contact">
+  <meta property="og:image" content="https://gsgroupservices.co.uk/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GS Group Services plant hire and groundworks site in London">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
@@ -29,13 +41,37 @@
     "name": "GS Group Services",
     "url": "https://gsgroupservices.co.uk",
     "logo": "https://gsgroupservices.co.uk/images/logo.png",
+    "image": "https://gsgroupservices.co.uk/images/og-image.jpg",
     "email": "info@gsgroupservices.co.uk",
-    "telephone": "+447440184221",
-    "description": "Professional telehandler and forklift hire with operator, groundworks, vehicle box installation and borehole drilling services across London and the UK.",
+    "telephone": "+447459672693",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "62 Fulmer Road",
+      "addressLocality": "London",
+      "postalCode": "E16 3TF",
       "addressCountry": "GB"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.5145538,
+      "longitude": 0.0407922
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    ],
+    "description": "Plant hire and groundworks services in London including telehandler hire with operator, forklift hire with operator, excavation and vehicle body services.",
     "areaServed": {
       "@type": "AdministrativeArea",
       "name": "London"
@@ -47,165 +83,190 @@
 <body>
 
 <header>
-  <div class="logo">GS Group Services</div>
+  <div class="header-inner">
 
-  <nav class="main-nav">
-  <ul class="menu">
-    <li><a href="index.html">Home</a></li>
+    <div class="logo">
+      <a href="/">
+        <img src="images/logo-header.png" alt="GS Group Services" width="180" height="74">
+      </a>
+    </div>
 
-    <li class="has-mega">
-      <a href="services.html">Services</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-box" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
 
-      <div class="mega-menu">
-        <div class="mega-column">
-          <h4>Plant Hire with Operator</h4>
-          <ul>
-            <li><a href="telehandler-hire-london.html">Telehandler Hire London</a></li>
-            <li><a href="forklift-hire-london.html">Forklift Hire London</a></li>
-            <li><a href="mini-digger-dumper-hire-london.html">Mini Digger & Dumper London</a></li>
-          </ul>
-        </div>
+    <nav class="main-nav" id="site-nav">
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
 
-        <div class="mega-column">
-          <h4>Groundworks</h4>
-          <ul>
-            <li><a href="groundworks-london.html">Groundworks London</a></li>
-            <li><a href="mini-digger-dumper-hire-london.html">Excavation & Site Prep</a></li>
-            <li><a href="borehole-drilling-london.html">Borehole Drilling</a></li>
-          </ul>
-        </div>
+        <li class="has-mega">
+          <a href="/services">Services</a>
+          <button class="mega-toggle" type="button" aria-expanded="false" aria-controls="mega-services">
+            <span class="visually-hidden">Show services submenu</span>
+            <span class="mega-toggle-icon" aria-hidden="true"></span>
+          </button>
 
-        <div class="mega-column">
-          <h4>Vehicle Services</h4>
-          <ul>
-            <li><a href="luton-van-box-installation-london.html">Luton Van Box Installation</a></li>
-            <li><a href="luton-van-box-installation-london.html">Curtain-Side Installation</a></li>
-            <li><a href="luton-van-box-installation-london.html">Vehicle Box Repairs</a></li>
-          </ul>
-        </div>
-      </div>
-    </li>
+          <div class="mega-menu" id="mega-services">
+            <div class="mega-column">
+              <span class="mega-title">Plant Hire with Operator</span>
+              <ul>
+                <li><a href="/telehandler-hire-london">Telehandler Hire London</a></li>
+                <li><a href="/forklift-hire-london">Forklift Hire London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Mini Digger &amp; Dumper London</a></li>
+              </ul>
+            </div>
 
-    <li><a href="london.html">London</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+            <div class="mega-column">
+              <span class="mega-title">Groundworks</span>
+              <ul>
+                <li><a href="/groundworks-london">Groundworks London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Excavation &amp; Site Prep</a></li>
+                <li><a href="/borehole-drilling-london">Borehole Drilling</a></li>
+              </ul>
+            </div>
 
+            <div class="mega-column">
+              <span class="mega-title">Vehicle Services</span>
+              <ul>
+                <li><a href="/luton-van-box-installation-london">Luton Van Box Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Curtain-Side Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Vehicle Box Repairs</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="/london">London</a></li>
+        <li><a href="/contact">Contact</a></li>
+
+        <li class="menu-contact phone">
+          <a href="tel:+447459672693">📞 07459 672693</a>
+        </li>
+
+        <li class="menu-contact email">
+          <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Telehandler, Forklift & Plant Hire Services in London and Across the UK</h1>
-
+  <h1>Plant Hire & Groundworks Services in London</h1>
   <p>
-    Professional plant hire and construction support services with experienced operators.
-    Fast response, reliable equipment and nationwide availability.
+    Telehandler and forklift hire with operator, groundworks, excavation and
+    specialist construction services across Greater London.
   </p>
-
-  <a href="contact.html" class="button">Request a Quote</a>
 </section>
 
 <!-- INTRO -->
-<section class="intro">
-  <h2>Professional Plant Hire & Multi Services</h2>
-
+<section class="content">
+  <h2>Professional Construction Support Across London</h2>
   <p>
-    GS Group Services is a UK-based company specialising in plant hire with operator,
-    groundworks and specialist construction support services.
-    We work with construction companies, logistics businesses and commercial clients
-    across London and the UK.
+    GS Group Services provides reliable plant hire and groundworks solutions
+    throughout London. We support construction companies, contractors and
+    commercial clients with experienced operators and modern equipment.
   </p>
 </section>
 
 <!-- SERVICES -->
-<section class="services-home">
-  <h2>Our Services</h2>
-
-  <div class="service-box">
-    <h3>Telehandler Hire with Operator</h3>
+<section class="services">
+  <article class="service">
+    <h3>Telehandler Hire with Operator in London</h3>
     <p>
-      Safe and efficient telehandler hire with experienced operators for construction
-      sites and industrial projects.
+      Our <a href="/telehandler-hire-london">telehandler hire with operator</a>
+      service delivers safe and efficient lifting solutions for construction
+      sites across London.
     </p>
-    <a href="services.html#telehandler">Learn more</a>
-  </div>
+  </article>
 
-  <div class="service-box">
-    <h3>Forklift Hire with Operator</h3>
+  <article class="service">
+    <h3>Forklift Hire with Operator in London</h3>
     <p>
-      Professional forklift hire services for warehouses, yards and construction
-      environments.
+      We provide <a href="/forklift-hire-london">forklift hire with operator</a>
+      for warehouses, industrial units and construction projects.
     </p>
-    <a href="services.html#forklift">Learn more</a>
-  </div>
+  </article>
 
-  <div class="service-box">
-    <h3>Groundworks</h3>
+  <article class="service">
+    <h3>Groundworks & Excavation</h3>
     <p>
-      Groundworks services including excavation, trenching and site preparation
-      using mini diggers and dumpers.
+      Our <a href="/groundworks-london">groundworks services</a> include
+      excavation, trenching and site preparation using modern mini diggers
+      and dumpers.
     </p>
-    <a href="services.html#groundworks">Learn more</a>
-  </div>
+  </article>
 
-  <div class="service-box">
-    <h3>Vehicle Box & Curtain-Side Solutions</h3>
+  <article class="service">
+    <h3>Vehicle Box & Curtain-Side Services</h3>
     <p>
-      Installation, replacement and repair of Luton van boxes and curtain-side bodies
-      for commercial vehicles.
+      Specialist Luton van box installation, curtain-side conversions
+      and commercial vehicle body repairs across London.
     </p>
-    <a href="services.html#vehicle">Learn more</a>
-  </div>
+  </article>
 
-  <div class="service-box">
-    <h3>Borehole Drilling</h3>
+  <article class="service">
+    <h3>Borehole & Water Well Drilling</h3>
     <p>
-      Professional borehole drilling services supporting construction and
-      industrial projects.
+      Professional borehole and water well drilling services for residential,
+      agricultural and commercial projects across the UK.
     </p>
-    <a href="services.html#borehole">Learn more</a>
+  </article>
+</section>
+
+<!-- GET A QUOTE -->
+<section class="contact">
+  <h2>Get a Quote</h2>
+  <p>Contact us today for plant hire or groundworks services in London.</p>
+
+  <form action="https://formspree.io/f/mzdazrgn" method="POST" class="quote-form">
+
+    <!-- Honeypot field - hidden from users, catches bots -->
+    <input type="text" name="website" class="honeypot-field" tabindex="-1" autocomplete="off">
+
+    <label for="name">Full Name *</label>
+    <input type="text" id="name" name="name" required aria-required="true">
+
+    <label for="email">Email *</label>
+    <input type="email" id="email" name="email" required aria-required="true">
+
+    <label for="phone">Phone *</label>
+    <input type="tel" id="phone" name="phone" required aria-required="true" placeholder="07XXX XXXXXX">
+
+    <label for="service">Service Required *</label>
+    <select id="service" name="service" required aria-required="true">
+      <option value="">Select a service</option>
+      <option value="Telehandler Hire">Telehandler Hire</option>
+      <option value="Forklift Hire">Forklift Hire</option>
+      <option value="Groundworks">Groundworks</option>
+      <option value="Mini Digger & Dumper">Mini Digger & Dumper</option>
+      <option value="Vehicle Box Services">Vehicle Box Services</option>
+      <option value="Borehole Drilling">Borehole Drilling</option>
+    </select>
+
+    <label for="location">Project Location</label>
+    <input type="text" id="location" name="location" placeholder="e.g. London, Enfield, Luton">
+
+    <label for="message">Project Details</label>
+    <textarea id="message" name="message" rows="5" placeholder="Tell us about your project requirements..."></textarea>
+
+    <button type="submit" class="button">Get a Free Quote</button>
+  </form>
+
+  <div class="contact-details">
+    <p><strong>📞 Phone:</strong> <a href="tel:+447459672693">07459 672693</a></p>
+    <p><strong>✉️ Email:</strong> <a href="mailto:info@gsgroupservices.co.uk">info@gsgroupservices.co.uk</a></p>
+    <p><strong>💬 WhatsApp:</strong> <a href="https://wa.me/447459672693" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
   </div>
 </section>
 
-<!-- SEO CONTENT -->
-<section class="seo-content">
-  <h2>Plant Hire, Groundworks & Specialist Services in London and the UK</h2>
-
-  <p>
-  GS Group Services provides professional 
-  <a href="telehandler-hire-london.html">telehandler hire with operator</a>,
-  <a href="forklift-hire-london.html">forklift hire with operator</a>
-  and comprehensive
-  <a href="groundworks-london.html">groundworks services</a>
-  across London.
-</p>
-
-
-  <p>
-    Based in London, we operate extensively throughout Greater London, Luton,
-    Bedfordshire, Hertfordshire and surrounding areas.
-    Our flexible approach allows us to support projects across the UK depending
-    on client requirements.
-  </p>
-
-  <p>
-    With experienced operators, modern equipment and full compliance with UK
-    safety standards, GS Group Services is a trusted partner for construction,
-    infrastructure and logistics projects.
-    We focus on delivering efficient, safe and cost-effective solutions
-    tailored to each project.
-  </p>
-</section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-content">
-    <p>© 2026 GS Group Services | Plant Hire & Construction Services | UK</p>
-    <p>
-      <a href="tel:+447440184221">📞 07440 184221</a> | 
-      <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
-    </p>
-    <p><a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+    <p>© 2026 GS Group Services | Plant Hire & Groundworks Specialists in London</p>
+    <p><a href="/privacy">Privacy Policy</a> | <a href="/contact">Contact Us</a></p>
   </div>
 </footer>
 
@@ -218,23 +279,15 @@
   💬
 </a>
 
-<!-- Cookie Banner (GDPR UK Compliant) -->
-<div id="cookie-banner" class="cookie-banner">
-  <p>We use cookies to improve your experience on our website. 
-     <a href="privacy.html">Learn more about our Privacy Policy</a></p>
-  <button onclick="acceptCookies()" class="cookie-accept">Accept</button>
+<!-- Cookie Banner (UK GDPR / PECR) -->
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent">
+  <p>We use cookies to understand how the site is used. Analytics cookies are only
+     set if you accept. <a href="/privacy">Read our Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject">Reject</button>
+    <button type="button" class="cookie-accept">Accept</button>
+  </div>
 </div>
-
-<script>
-// Cookie consent management
-if (!localStorage.getItem('cookiesAccepted')) {
-  document.getElementById('cookie-banner').style.display = 'flex';
-}
-function acceptCookies() {
-  localStorage.setItem('cookiesAccepted', 'true');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-</script>
 
 </body>
 </html>
