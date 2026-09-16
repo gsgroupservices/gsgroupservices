@@ -2,6 +2,7 @@
   "name": "gsgroupservices",
   "compatibility_date": "2026-01-31",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "not_found_handling": "404-page"
   }
 }

@@ -98,10 +98,9 @@ test('the homepage is the only page claiming the site root', () => {
 
 /** References to files shipped in the repository (as opposed to site routes). */
 function localAssetReferences(html) {
-  return localReferences(html).filter((ref) => {
-    if (ref.startsWith('/')) return false; // site route, checked separately
-    return /\.(?:js|css|png|jpe?g|webp|svg|ico|gif|avif|woff2?|ttf)$/i.test(ref);
-  });
+  return localReferences(html).filter((ref) =>
+    /\.(?:js|css|png|jpe?g|webp|svg|ico|gif|avif|woff2?|ttf)$/i.test(ref),
+  );
 }
 
 test('every local asset referenced by a page exists', () => {
@@ -109,8 +108,11 @@ test('every local asset referenced by a page exists', () => {
 
   for (const name of PAGES) {
     for (const ref of localAssetReferences(readPage(name))) {
-      const target = path.join(REPO_ROOT, ref);
-      if (!fs.existsSync(target)) missing.push(`${name} -> ${ref}`);
+      // Root-absolute asset paths resolve from the site root, not the page.
+      const target = ref.startsWith('/') ? ref.slice(1) : ref;
+      if (!fs.existsSync(path.join(REPO_ROOT, target))) {
+        missing.push(`${name} -> ${ref}`);
+      }
     }
   }
 
@@ -136,9 +138,9 @@ test('every internal link points at a page that exists', () => {
 test('every page loads the shared nav and analytics modules', () => {
   for (const name of PAGES) {
     const html = readPage(name);
-    assert.match(html, /src="js\/nav\.js"/, `${name} does not load js/nav.js`);
-    assert.match(html, /src="js\/analytics\.js"/, `${name} does not load js/analytics.js`);
-    assert.match(html, /href="css\/style\.css"/, `${name} does not load the stylesheet`);
+    assert.match(html, /src="\/?js\/nav\.js"/, `${name} does not load js/nav.js`);
+    assert.match(html, /src="\/?js\/analytics\.js"/, `${name} does not load js/analytics.js`);
+    assert.match(html, /href="\/?css\/style\.css"/, `${name} does not load the stylesheet`);
   }
 });
 
@@ -191,4 +193,34 @@ test('a deprecated PHP handler is not shipped', () => {
   // downloaded as plain text rather than executed.
   const phpFiles = fs.readdirSync(REPO_ROOT).filter((name) => name.endsWith('.php'));
   assert.deepEqual(phpFiles, []);
+});
+
+test('the 404 page is served for unknown routes', () => {
+  const config = fs.readFileSync(path.join(REPO_ROOT, 'wrangler.jsonc'), 'utf8');
+  assert.match(config, /"not_found_handling"\s*:\s*"404-page"/);
+  assert.ok(fs.existsSync(path.join(REPO_ROOT, '404.html')));
+});
+
+test('the 404 page loads its assets from the site root', () => {
+  // Cloudflare serves 404.html for arbitrary paths such as /a/b/c, where a
+  // relative asset path would resolve to /a/b/css/style.css and 404 itself.
+  const refs = localAssetReferences(readPage('404.html'));
+  assert.ok(refs.length > 0, '404.html references no assets');
+  for (const ref of refs) {
+    assert.ok(ref.startsWith('/'), `404.html uses a relative asset path: ${ref}`);
+  }
+});
+
+test('build and development files are excluded from the deployment', () => {
+  const ignore = fs.readFileSync(path.join(REPO_ROOT, '.assetsignore'), 'utf8');
+  const patterns = ignore
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
+
+  // wrangler.jsonc publishes the repository root, so anything not excluded here
+  // would be downloadable from the public site.
+  for (const required of ['node_modules', 'tests', 'package.json', 'AGENTS.md', 'LEGGIMI.txt']) {
+    assert.ok(patterns.includes(required), `.assetsignore does not exclude ${required}`);
+  }
 });

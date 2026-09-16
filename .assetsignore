@@ -1,0 +1,18 @@
+# wrangler.jsonc serves the repository root (assets.directory = "./"), so
+# anything not listed here is published to the public site. Keep build and
+# development files out of the deployed output.
+
+# Tooling and dependencies
+node_modules
+package.json
+package-lock.json
+.gitignore
+.assetsignore
+
+# Maintainer notes and agent instructions
+LEGGIMI.txt
+AGENTS.md
+wrangler.jsonc
+
+# Tests are not part of the site
+tests
