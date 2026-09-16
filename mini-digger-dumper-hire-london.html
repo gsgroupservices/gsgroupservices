@@ -1,46 +1,284 @@
-GS GROUP SERVICES — SITO AGGIORNATO
-12 settembre 2026
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.className="js";</script>
 
-Questa cartella contiene il sito COMPLETO e pronto da pubblicare.
-Sostituisce integralmente il contenuto della repo gsgroupservices/gsgroupservices.
+  <title>Mini Digger & Dumper Hire with Operator in London | GS Group Services</title>
 
+  <meta name="description" content="Mini digger and dumper hire with operator in London. Professional excavation, groundworks and site preparation services across Greater London.">
 
-COME PUBBLICARE
----------------
-1. Copia tutti i file di questa cartella nella repo, sovrascrivendo quelli esistenti.
-2. IMPORTANTE: cancella "send.php" dalla repo. Non è più usato e va rimosso
-   (era un template PHP incompleto, pubblicamente leggibile, e Cloudflare Pages
-   non esegue comunque PHP).
-3. Commit + push su main. Cloudflare Pages pubblica in automatico.
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london.webp" media="(min-width: 769px)">
+  <link rel="preload" as="image" href="images/hero-plant-hire-groundworks-london-mobile.webp" media="(max-width: 768px)">
+  <script src="js/nav.js" defer></script>
+  <script src="js/analytics.js" defer></script>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
-COSA CAMBIA
------------
-File nuovi (5):
-  404.html                  pagina di errore — risolve il soft-404
-  js/nav.js                 menu mobile
-  js/analytics.js           consenso cookie + Google Analytics 4
-  images/logo-header.png    logo ritagliato per l'header
-  images/og-image.jpg       immagine per le anteprime social
+  <link rel="canonical" href="https://gsgroupservices.co.uk/mini-digger-dumper-hire-london">
 
-File modificati (14): tutte le pagine HTML + css/style.css + sitemap.xml
-File da eliminare (1): send.php
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GS Group Services">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Mini Digger & Dumper Hire with Operator in London | GS Group Services">
+  <meta property="og:description" content="Mini digger and dumper hire with operator in London. Professional excavation, groundworks and site preparation services across Greater London.">
+  <meta property="og:url" content="https://gsgroupservices.co.uk/mini-digger-dumper-hire-london">
+  <meta property="og:image" content="https://gsgroupservices.co.uk/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GS Group Services plant hire and groundworks site in London">
+  <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "GS Group Services",
+    "url": "https://gsgroupservices.co.uk",
+    "logo": "https://gsgroupservices.co.uk/images/logo.png",
+    "image": "https://gsgroupservices.co.uk/images/og-image.jpg",
+    "email": "info@gsgroupservices.co.uk",
+    "telephone": "+447459672693",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "62 Fulmer Road",
+      "addressLocality": "London",
+      "postalCode": "E16 3TF",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.5145538,
+      "longitude": 0.0407922
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    ],
+    "description": "GS Group Services provides telehandler hire with operator, forklift hire with operator, groundworks, mini digger and dumper services, Luton van box installation and borehole drilling across London and the UK.",
+    "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "London"
+      },
+      {
+        "@type": "Country",
+        "name": "United Kingdom"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Construction & Plant Hire Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mini Digger & Dumper Hire with Operator",
+            "areaServed": "London, UK"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+</head>
 
-DA CONTROLLARE DOPO LA PUBBLICAZIONE
-------------------------------------
-- Un URL inventato deve rispondere 404 (non 200):
-    curl -I https://gsgroupservices.co.uk/prova-xyz
-- Il form contatti deve continuare a funzionare (Formspree, invariato).
-- In Google Analytics: escludere il traffico interno e da localhost.
+<body>
 
+<header>
+  <div class="header-inner">
 
-NOTA SULL'ANTEPRIMA IN LOCALE
------------------------------
-I link interni ora sono senza estensione (/contact invece di contact.html),
-perché è così che Cloudflare Pages serve le pagine.
-Aprendo i file con un server statico semplice o con doppio click, i link
-sembreranno rotti: è normale, NON è un errore. Online funzionano.
+    <div class="logo">
+      <a href="/">
+        <img src="images/logo-header.png" alt="GS Group Services" width="180" height="74">
+      </a>
+    </div>
 
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-box" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
 
-Dettaglio completo degli interventi: RAPPORTO-FIX.md e ANALISI-SEO.md
+    <nav class="main-nav" id="site-nav">
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+
+        <li class="has-mega">
+          <a href="/services">Services</a>
+          <button class="mega-toggle" type="button" aria-expanded="false" aria-controls="mega-services">
+            <span class="visually-hidden">Show services submenu</span>
+            <span class="mega-toggle-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="mega-menu" id="mega-services">
+            <div class="mega-column">
+              <span class="mega-title">Plant Hire with Operator</span>
+              <ul>
+                <li><a href="/telehandler-hire-london">Telehandler Hire London</a></li>
+                <li><a href="/forklift-hire-london">Forklift Hire London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Mini Digger &amp; Dumper London</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Groundworks</span>
+              <ul>
+                <li><a href="/groundworks-london">Groundworks London</a></li>
+                <li><a href="/mini-digger-dumper-hire-london">Excavation &amp; Site Prep</a></li>
+                <li><a href="/borehole-drilling-london">Borehole Drilling</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-column">
+              <span class="mega-title">Vehicle Services</span>
+              <ul>
+                <li><a href="/luton-van-box-installation-london">Luton Van Box Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Curtain-Side Installation</a></li>
+                <li><a href="/luton-van-box-installation-london">Vehicle Box Repairs</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="/london">London</a></li>
+        <li><a href="/contact">Contact</a></li>
+
+        <li class="menu-contact phone">
+          <a href="tel:+447459672693">📞 07459 672693</a>
+        </li>
+
+        <li class="menu-contact email">
+          <a href="mailto:info@gsgroupservices.co.uk">✉️ info@gsgroupservices.co.uk</a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Mini Digger & Dumper Hire with Operator in London</h1>
+  <p>
+    Professional mini digger and dumper hire with operator for excavation,
+    groundworks and site preparation across Greater London.
+  </p>
+</section>
+
+<!-- INTRO -->
+<section class="content">
+  <h2>Mini Digger & Dumper Services Across London</h2>
+
+  <p>
+    GS Group Services provides professional
+    <a href="/telehandler-hire-london">telehandler hire with operator</a>,
+    <a href="/forklift-hire-london">forklift hire with operator</a>
+    and comprehensive
+    <a href="/groundworks-london">groundworks services</a>
+    across London.
+  </p>
+
+  <p>
+    Our mini digger and dumper services support efficient excavation,
+    material handling and site preparation using modern, well-maintained equipment.
+  </p>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <article class="service">
+    <h3>Mini Digger Hire with Operator</h3>
+    <p>
+      Ideal for restricted-access sites, foundations, drainage works
+      and landscaping projects throughout London.
+    </p>
+  </article>
+
+  <article class="service">
+    <h3>Dumper Hire</h3>
+    <p>
+      Dumper services to support safe and efficient material transport,
+      improving productivity during excavation and groundworks operations.
+    </p>
+  </article>
+
+  <article class="service">
+    <h3>Excavation & Site Preparation</h3>
+    <p>
+      Complete excavation and site preparation services to ensure
+      your project starts on solid and level ground.
+    </p>
+  </article>
+
+  <article class="service">
+    <h3>Fully Insured & Compliant Operators</h3>
+    <p>
+      All services are delivered by trained, insured operators,
+      fully compliant with UK health and safety regulations.
+    </p>
+  </article>
+</section>
+
+<!-- AREAS -->
+<section class="areas">
+  <h2>Mini Digger & Dumper Hire Areas in London</h2>
+  <p>
+    We operate across North, South, East and West London, as well as nearby areas
+    including Luton, Watford and surrounding locations.
+  </p>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Need Mini Digger or Dumper Hire in London?</h2>
+  <p>
+    Contact GS Group Services today to discuss your project
+    and receive a fast, competitive quote.
+  </p>
+  <a href="/contact" class="button">Request a Quote</a>
+</section>
+
+<footer>
+  <div class="footer-content">
+  <p>© GS Group Services | Mini Digger & Dumper Hire London</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/447459672693?text=Hi%20GS%20Group%2C%20I%20need%20a%20quote" 
+   class="whatsapp-float" 
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contact us on WhatsApp">
+  💬
+</a>
+
+<!-- Cookie Banner (UK GDPR / PECR) -->
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent">
+  <p>We use cookies to understand how the site is used. Analytics cookies are only
+     set if you accept. <a href="/privacy">Read our Privacy Policy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-reject">Reject</button>
+    <button type="button" class="cookie-accept">Accept</button>
+  </div>
+</div>
+
+</body>
+</html>
