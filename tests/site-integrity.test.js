@@ -211,9 +211,27 @@ test('the 404 page loads its assets from the site root', () => {
   }
 });
 
+/** Every file the site publishes, modelled on the deployment. */
+function publishedFiles() {
+  const found = [];
+  const skip = new Set(['.git', 'node_modules']);
+
+  const walk = (dir, prefix) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (skip.has(entry.name)) continue;
+      const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) walk(path.join(dir, entry.name), rel);
+      else found.push(rel);
+    }
+  };
+
+  walk(REPO_ROOT, '');
+  return found;
+}
+
 test('no credentials are committed to the published tree', () => {
-  // The site is deployed from the repository root, so any secret committed here
-  // would be downloadable. Flag the high-signal patterns.
+  // Cloudflare Pages publishes the repository root, so anything committed here
+  // is downloadable. Flag the high-signal credential patterns.
   const patterns = [
     /gh[pousr]_[A-Za-z0-9]{16,}/,
     /github_pat_[A-Za-z0-9_]{20,}/,
@@ -223,10 +241,17 @@ test('no credentials are committed to the published tree', () => {
   ];
   const offenders = [];
 
-  for (const name of PAGES) {
-    const html = readPage(name);
+  for (const rel of publishedFiles()) {
+    let content;
+    try {
+      content = fs.readFileSync(path.join(REPO_ROOT, rel));
+    } catch {
+      continue;
+    }
+    if (content.includes(0)) continue; // binary
+    const text = content.toString('utf8');
     for (const pattern of patterns) {
-      if (pattern.test(html)) offenders.push(`${name} matches ${pattern}`);
+      if (pattern.test(text)) offenders.push(`${rel} matches ${pattern}`);
     }
   }
 

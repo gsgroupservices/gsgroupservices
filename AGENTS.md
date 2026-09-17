@@ -41,8 +41,13 @@ Consequences worth knowing:
   production. Local `wrangler dev` is still useful for previewing routing.
 - `.assetsignore` is honoured only by Wrangler. Pages ignores it, so every file
   in the repository root is published, including `package.json`, `LEGGIMI.txt`
-  and `AGENTS.md`. Do not commit credentials here. Excluding those files needs a
-  Pages build command (`rm -rf` the extras) or a move to a Workers deploy.
+  and `AGENTS.md`. Do not commit credentials here: the repository is public and
+  the Pages output is public, so both are readable. `_redirects` cannot help,
+  since Pages supports only redirect statuses (301/302/303/307/308) and not
+  rewrites or a 404 response. Excluding these files needs a Pages build command
+  that deletes them, or a move to a Workers deploy. This is tidiness, not a
+  disclosure: the files are already readable on GitHub, so Pages adds no new
+  exposure.
 - A top-level `404.html` is what makes Pages return a real 404. Without it Pages
   assumes a single-page app, serves `index.html` with a 200 for every unknown
   URL (a soft 404), and Google may index those URLs.
