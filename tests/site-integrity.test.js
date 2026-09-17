@@ -211,16 +211,40 @@ test('the 404 page loads its assets from the site root', () => {
   }
 });
 
-test('build and development files are excluded from the deployment', () => {
+test('no credentials are committed to the published tree', () => {
+  // The site is deployed from the repository root, so any secret committed here
+  // would be downloadable. Flag the high-signal patterns.
+  const patterns = [
+    /gh[pousr]_[A-Za-z0-9]{16,}/,
+    /github_pat_[A-Za-z0-9_]{20,}/,
+    /sk-[A-Za-z0-9]{20,}/,
+    /AKIA[0-9A-Z]{16}/,
+    /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
+  ];
+  const offenders = [];
+
+  for (const name of PAGES) {
+    const html = readPage(name);
+    for (const pattern of patterns) {
+      if (pattern.test(html)) offenders.push(`${name} matches ${pattern}`);
+    }
+  }
+
+  assert.deepEqual(offenders, [], `possible credentials in published files:\n  ${offenders.join('\n  ')}`);
+});
+
+test('.assetsignore lists the development files', () => {
+  // .assetsignore is only honoured when deploying with Wrangler (Workers).
+  // The live site is published by Cloudflare Pages from a Git push, which
+  // ignores this file and uploads the whole repository, so keeping it in sync
+  // is a prerequisite for a Workers migration rather than a live guarantee.
   const ignore = fs.readFileSync(path.join(REPO_ROOT, '.assetsignore'), 'utf8');
   const patterns = ignore
     .split('\n')
     .map((line) => line.trim())
     .filter((line) => line && !line.startsWith('#'));
 
-  // wrangler.jsonc publishes the repository root, so anything not excluded here
-  // would be downloadable from the public site.
   for (const required of ['node_modules', 'tests', 'package.json', 'AGENTS.md', 'LEGGIMI.txt']) {
-    assert.ok(patterns.includes(required), `.assetsignore does not exclude ${required}`);
+    assert.ok(patterns.includes(required), `.assetsignore does not list ${required}`);
   }
 });
