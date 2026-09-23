@@ -258,6 +258,39 @@ test('no credentials are committed to the published tree', () => {
   assert.deepEqual(offenders, [], `possible credentials in published files:\n  ${offenders.join('\n  ')}`);
 });
 
+test('the desktop hover rule cannot be the only way to open the submenu', () => {
+  // A touch device wider than 768px has no hover, so the submenu has to be
+  // reachable some other way or the Services links are unreachable entirely.
+  const css = fs.readFileSync(path.join(REPO_ROOT, 'css/style.css'), 'utf8');
+
+  assert.ok(
+    /\.js\s+\.mega-toggle\s*\{[^}]*display:\s*inline-flex/.test(css),
+    '.mega-toggle is not displayed for JS-enabled clients at all widths',
+  );
+  assert.ok(
+    /\.mega-menu\.is-open\s*\{[^}]*display:\s*grid/.test(css),
+    '.mega-menu.is-open has no display rule outside the mobile media query',
+  );
+});
+
+test('the submenu toggle is not confined to the mobile media query', () => {
+  const css = fs.readFileSync(path.join(REPO_ROOT, 'css/style.css'), 'utf8');
+
+  // Split the stylesheet into the mobile media query and everything else.
+  const mobileStart = css.indexOf('@media (max-width: 768px)');
+  const outsideMobile = mobileStart === -1 ? css : css.slice(0, mobileStart);
+
+  assert.ok(
+    /\.js\s+\.mega-toggle\s*\{[^}]*display:\s*(inline-flex|block)/.test(outsideMobile),
+    '.js .mega-toggle is only displayed inside the mobile media query, so the '
+      + 'submenu is unreachable on a touch device wider than 768px',
+  );
+  assert.ok(
+    /\.mega-menu\.is-open\s*\{[^}]*display:\s*grid/.test(outsideMobile),
+    '.mega-menu.is-open is only honoured inside the mobile media query',
+  );
+});
+
 test('_redirects keeps the development files off the public site', () => {
   // Pages publishes the repository root and cannot return 404 from _redirects,
   // so these paths are redirected to the homepage instead of served.

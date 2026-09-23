@@ -234,6 +234,18 @@ header {
   }
 }
 
+/* Il pulsante del sottomenu resta disponibile a ogni larghezza. Senza di esso
+   un tablet touch piu largo di 768px non ha ne hover ne toggle, quindi il
+   sottomenu Services non si apre in alcun modo; lo stesso vale per chi naviga
+   da tastiera. */
+.js .mega-toggle {
+  display: inline-flex;
+}
+
+.mega-menu.is-open {
+  display: grid;
+}
+
 /* Era un <h4>: sostituito da uno <span> per non inserire
    titoli di sezione prima dell'<h1> della pagina. */
 .mega-column .mega-title {
