@@ -74,20 +74,6 @@ const LOCATIONS = [
     ],
     nearby: ['Barking', 'Stratford', 'Dagenham', 'Romford', 'Wanstead'],
   },
-  {
-    slug: 'watford-wd17-telehandler-and-forklift-hire',
-    area: 'Watford',
-    postcode: 'WD17',
-    region: 'Hertfordshire',
-    intro: [
-      'GS Group Services covers Watford and the surrounding Hertfordshire area '
-      + 'with telehandler and forklift hire with operator, plus groundworks and '
-      + 'vehicle body services.',
-      'We work with contractors, developers and commercial clients, and can quote '
-      + 'for a single day or a long-term placement.',
-    ],
-    nearby: ['Bushey', 'Rickmansworth', 'St Albans', 'Hemel Hempstead', 'Abbots Langley'],
-  },
 ];
 
 function escapeAttribute(value) {

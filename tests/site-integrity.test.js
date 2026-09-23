@@ -323,6 +323,22 @@ test('the area landing pages match what the renderer produces', () => {
   }
 });
 
+test('no stale area page is left behind in location/', () => {
+  // Removing a location from the list must remove its page too; otherwise the
+  // old URL keeps resolving with outdated rates on it.
+  const { LOCATIONS } = require('../scripts/locations');
+  const expected = new Set(LOCATIONS.map((loc) => `${loc.slug}.html`));
+
+  const actual = fs.readdirSync(path.join(REPO_ROOT, 'location'))
+    .filter((name) => name.endsWith('.html'));
+
+  assert.deepEqual(
+    actual.filter((name) => !expected.has(name)),
+    [],
+    'unexpected files in location/; run: npm run build:locations',
+  );
+});
+
 test('area pages are one level deep and point every asset at the site root', () => {
   // These pages live in /location/, where a relative asset path such as
   // css/style.css would resolve to /location/css/style.css and 404.
