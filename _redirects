@@ -1,0 +1,13 @@
+# Cloudflare Pages publishes the repository root, so build and development
+# files would otherwise be downloadable from the live site. Pages supports
+# only redirect statuses, not rewrites or a 404, so send these to the
+# homepage rather than serving their contents.
+
+/package.json       /  301
+/package-lock.json  /  301
+/wrangler.jsonc     /  301
+/AGENTS.md          /  301
+/LEGGIMI.txt        /  301
+/.assetsignore      /  301
+/.gitignore         /  301
+/tests/*            /  301

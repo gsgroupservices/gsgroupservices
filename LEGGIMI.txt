@@ -43,4 +43,6 @@ Aprendo i file con un server statico semplice o con doppio click, i link
 sembreranno rotti: è normale, NON è un errore. Online funzionano.
 
 
-Dettaglio completo degli interventi: RAPPORTO-FIX.md e ANALISI-SEO.md
+Dettaglio completo degli interventi: i due file di rapporto citati in
+precedenza (RAPPORTO-FIX.md e ANALISI-SEO.md) non sono presenti nel
+repository e non sono piu recuperabili.

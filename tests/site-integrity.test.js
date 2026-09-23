@@ -258,6 +258,45 @@ test('no credentials are committed to the published tree', () => {
   assert.deepEqual(offenders, [], `possible credentials in published files:\n  ${offenders.join('\n  ')}`);
 });
 
+test('_redirects keeps the development files off the public site', () => {
+  // Pages publishes the repository root and cannot return 404 from _redirects,
+  // so these paths are redirected to the homepage instead of served.
+  const source = fs.readFileSync(path.join(REPO_ROOT, '_redirects'), 'utf8');
+  const rules = new Map();
+
+  for (const line of source.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const [from, to, status] = trimmed.split(/\s+/);
+    rules.set(from, { to, status });
+  }
+
+  for (const blocked of [
+    '/package.json',
+    '/package-lock.json',
+    '/wrangler.jsonc',
+    '/AGENTS.md',
+    '/LEGGIMI.txt',
+    '/.assetsignore',
+    '/.gitignore',
+    '/tests/*',
+  ]) {
+    const rule = rules.get(blocked);
+    assert.ok(rule, `_redirects has no rule for ${blocked}`);
+    assert.equal(rule.to, '/', `${blocked} should redirect to the homepage`);
+    assert.equal(rule.status, '301', `${blocked} should use a 301`);
+  }
+
+  // A wildcard that caught real content would break the site.
+  for (const page of PAGES) {
+    for (const from of rules.keys()) {
+      if (!from.includes('*')) continue;
+      const prefix = from.slice(0, from.indexOf('*'));
+      assert.ok(!page.startsWith(prefix), `_redirects ${from} would block ${page}`);
+    }
+  }
+});
+
 test('.assetsignore lists the development files', () => {
   // .assetsignore is only honoured when deploying with Wrangler (Workers).
   // The live site is published by Cloudflare Pages from a Git push, which
