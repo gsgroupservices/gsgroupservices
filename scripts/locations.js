@@ -12,24 +12,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+const { RATES, FROM_RATE, RATE_NOTE, rateTable } = require('./rates');
+
 const REPO_ROOT = path.join(__dirname, '..');
 const SITE = 'https://gsgroupservices.co.uk';
-
-// Change these two lines if the commercial terms move.
-const FROM_RATE = 'From £450 per day';
-const RATE_NOTE =
-  'Rates exclude VAT and cover the machine and its operator. The minimum hire '
-  + 'is one day, because mobilising plant to site takes a large part of the '
-  + 'first day. The final price is confirmed in writing after a site assessment.';
-
-const RATES = [
-  ['Telehandler hire with operator', FROM_RATE],
-  ['Forklift hire with operator', FROM_RATE],
-  ['Mini digger &amp; dumper hire with operator', FROM_RATE],
-  ['Groundworks &amp; site preparation', 'Quoted per project'],
-  ['Vehicle box &amp; curtain-side installation', 'Quoted per vehicle'],
-  ['Borehole &amp; water well drilling', 'Quoted per project'],
-];
 
 const LOCATIONS = [
   {
@@ -220,20 +206,7 @@ ${loc.intro.map((paragraph) => `  <p>\n    ${paragraph}\n  </p>`).join('\n\n')}
     below are a starting point for budgeting work in ${loc.area}.
   </p>
 
-  <table class="rate-table">
-    <caption>Plant hire with operator, indicative rates</caption>
-    <thead>
-      <tr>
-        <th scope="col">Service</th>
-        <th scope="col">Indicative rate</th>
-      </tr>
-    </thead>
-    <tbody>
-${RATES.map(([service, rate]) => `      <tr>\n        <td>${service}</td>\n        <td>${rate}</td>\n      </tr>`).join('\n')}
-    </tbody>
-  </table>
-
-  <p class="rate-note">${RATE_NOTE}</p>
+${rateTable('Plant hire with operator, indicative rates')}
 </section>
 
 <!-- AREAS -->

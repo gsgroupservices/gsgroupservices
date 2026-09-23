@@ -899,7 +899,7 @@ footer {
 }
 
 /* =========================
-   TABELLA TARIFFE (pagine area)
+   TABELLA TARIFFE (pagine area, home, servizi)
 ========================= */
 .rate-table {
   width: 100%;
@@ -951,6 +951,40 @@ footer {
   font-size: 14px;
   color: #5b6b7b;
   max-width: 72ch;
+}
+
+/* Il prezzo in evidenza dentro le schede servizio. */
+.service-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b1c2d;
+}
+
+/* La sezione tariffe su home e pagina servizi. */
+.rates {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+.rates > h2 {
+  font-size: 30px;
+  color: #0b1c2d;
+  margin-bottom: 16px;
+}
+
+.rates > p {
+  max-width: 72ch;
+  color: #3d4b59;
+}
+
+.rates .rate-table {
+  margin: 24px 0 16px;
+}
+
+.rates .button {
+  display: inline-block;
+  margin-top: 10px;
 }
 
 @media (max-width: 480px) {

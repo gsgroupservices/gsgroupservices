@@ -419,6 +419,48 @@ test('_redirects keeps the development files off the public site', () => {
   }
 });
 
+test('the headline rate on every pricing page matches scripts/rates.js', () => {
+  // The rate is written into hand-maintained pages as well as the generated area
+  // pages, so a change to scripts/rates.js must be reflected in all of them. This
+  // is what stops the homepage quoting a different price from the Services page.
+  const { FROM_RATE, RATES, RATE_NOTE } = require('../scripts/rates');
+
+  const expectsTable = [
+    'index.html',
+    'services.html',
+    ...PAGES.filter((name) => name.startsWith('location/')),
+  ];
+
+  for (const page of expectsTable) {
+    const html = fs.readFileSync(path.join(REPO_ROOT, page), 'utf8');
+    assert.ok(html.includes(FROM_RATE), `${page} does not show ${FROM_RATE}`);
+    assert.ok(html.includes(RATE_NOTE), `${page} does not carry the rate note`);
+
+    for (const { service, rate } of RATES) {
+      assert.ok(
+        html.includes(rate),
+        `${page} is missing the rate "${rate}" for ${service}`,
+      );
+    }
+  }
+});
+
+test('no page quotes a stale price', () => {
+  // Any GBP/day figure that is not the one in scripts/rates.js is a leftover.
+  const { FROM_RATE } = require('../scripts/rates');
+  const allowed = new Set([FROM_RATE, '£450 per day']);
+
+  for (const page of PAGES) {
+    const html = fs.readFileSync(path.join(REPO_ROOT, page), 'utf8');
+    for (const match of html.matchAll(/£\d[\d,]*\s*(?:per|\/)\s*day/gi)) {
+      assert.ok(
+        allowed.has(match[0].trim()),
+        `${page} quotes "${match[0].trim()}", which is not the current rate`,
+      );
+    }
+  }
+});
+
 test('a removed area page redirects instead of serving a cached copy', () => {
   // Cloudflare caches HTML for up to 7 days, so deleting a page from the repo
   // does not stop the old URL being served. A removed location needs a rule.

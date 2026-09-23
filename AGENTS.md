@@ -23,6 +23,10 @@ Pages via `wrangler.jsonc`.
 - `images/` — logo, favicon, social preview, hero images.
 - `scripts/` — Node-only helpers used at authoring time. Not part of the served
   site; `_redirects` blocks the path on Pages.
+- `scripts/rates.js` — the hire rates. Single source of truth: the area pages
+  render from it, and a test fails if `index.html` or `services.html` drift from
+  it. Change the commercial terms there, rebuild the area pages, then bring the
+  hand-written tables into line.
 - `sitemap.xml`, `robots.txt` — SEO.
 
 ## Testing
