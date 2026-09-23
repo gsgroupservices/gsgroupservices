@@ -11,10 +11,18 @@ Pages via `wrangler.jsonc`.
 - `*.html` — one file per route. Internal links are extensionless (`/contact`),
   because that is how Cloudflare Pages serves them. Opening the files directly
   from disk will look like broken links; that is expected.
+- `location/*.html` — area landing pages (telehandler/forklift hire in a named
+  town and postcode, with indicative day rates). These are **generated**: edit
+  `scripts/locations.js`, then run `node scripts/build-locations.js`. A test
+  compares the committed files with the renderer's output, so they cannot drift.
+  They live one level below the root, so every asset path in them must be
+  root-absolute (`/css/style.css`), never relative.
 - `css/style.css` — the single stylesheet.
 - `js/nav.js`, `js/analytics.js` — the only client-side modules (mobile nav;
   cookie consent + GA4). Loaded by every page.
 - `images/` — logo, favicon, social preview, hero images.
+- `scripts/` — Node-only helpers used at authoring time. Not part of the served
+  site; `_redirects` blocks the path on Pages.
 - `sitemap.xml`, `robots.txt` — SEO.
 
 ## Testing

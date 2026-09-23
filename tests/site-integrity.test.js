@@ -14,10 +14,15 @@ const path = require('node:path');
 
 const { REPO_ROOT } = require('./helpers/dom');
 
-/** Pages that are part of the shipped site. */
-const PAGES = fs
-  .readdirSync(REPO_ROOT)
-  .filter((name) => name.endsWith('.html') && name !== 'LEGGIMI.txt');
+/** Pages that are part of the shipped site, including the area landing pages. */
+const PAGES = [
+  ...fs.readdirSync(REPO_ROOT).filter((name) => name.endsWith('.html')),
+  ...(fs.existsSync(path.join(REPO_ROOT, 'location'))
+    ? fs.readdirSync(path.join(REPO_ROOT, 'location'))
+      .filter((name) => name.endsWith('.html'))
+      .map((name) => `location/${name}`)
+    : []),
+];
 
 /**
  * Error and confirmation pages are intentionally kept out of the index, so they
@@ -60,6 +65,11 @@ function resolveSitePath(sitePath) {
 
   if (relative === '') return 'index.html';
   if (path.extname(relative)) return relative;
+  if (fs.existsSync(path.join(REPO_ROOT, `${relative}.html`))) return `${relative}.html`;
+  // Pages also serves directory index files (/location/ -> location/index.html).
+  if (fs.existsSync(path.join(REPO_ROOT, relative, 'index.html'))) {
+    return path.join(relative, 'index.html');
+  }
   return `${relative}.html`;
 }
 
@@ -75,7 +85,9 @@ test('every indexable page has a title and a canonical URL matching its filename
     assert.ok(canonical, `${name} has no canonical link`);
 
     // /contact -> contact.html; the root page is index.html.
-    const expected = name === 'index.html' ? '/' : `/${name.replace(/\.html$/, '')}`;
+    const expected = name === 'index.html'
+      ? '/'
+      : `/${name.replace(/\.html$/, '')}`;
     const actual = canonical[1].replace('https://gsgroupservices.co.uk', '');
     assert.equal(actual, expected, `${name} canonical does not match its filename`);
   }
@@ -108,8 +120,11 @@ test('every local asset referenced by a page exists', () => {
 
   for (const name of PAGES) {
     for (const ref of localAssetReferences(readPage(name))) {
-      // Root-absolute asset paths resolve from the site root, not the page.
-      const target = ref.startsWith('/') ? ref.slice(1) : ref;
+      // Root-absolute asset paths resolve from the site root, not the page; a
+      // relative path resolves against the page's own directory.
+      const target = ref.startsWith('/')
+        ? ref.slice(1)
+        : path.join(path.dirname(name), ref);
       if (!fs.existsSync(path.join(REPO_ROOT, target))) {
         missing.push(`${name} -> ${ref}`);
       }
@@ -181,7 +196,7 @@ test('sitemap.xml lists exactly the public pages', () => {
     match[1].replace('https://gsgroupservices.co.uk', ''),
   );
 
-  const expected = PAGES.filter((name) => name !== '404.html' && name !== 'thank-you.html')
+  const expected = PAGES.filter((name) => !NOINDEX_PAGES.includes(name))
     .map((name) => (name === 'index.html' ? '/' : `/${name.replace(/\.html$/, '')}`))
     .sort();
 
@@ -289,6 +304,64 @@ test('the submenu toggle is not confined to the mobile media query', () => {
     /\.mega-menu\.is-open\s*\{[^}]*display:\s*grid/.test(outsideMobile),
     '.mega-menu.is-open is only honoured inside the mobile media query',
   );
+});
+
+test('the area landing pages match what the renderer produces', () => {
+  // The pages are committed as static HTML. Without this check, editing the
+  // shared shell in london.html would leave them stale with nothing to say so.
+  const { LOCATIONS, renderLocationPage } = require('../scripts/locations');
+
+  for (const loc of LOCATIONS) {
+    const target = path.join(REPO_ROOT, 'location', `${loc.slug}.html`);
+    assert.ok(fs.existsSync(target), `location/${loc.slug}.html is missing`);
+
+    assert.equal(
+      fs.readFileSync(target, 'utf8'),
+      renderLocationPage(loc),
+      `location/${loc.slug}.html is out of date; run: node scripts/build-locations.js`,
+    );
+  }
+});
+
+test('area pages are one level deep and point every asset at the site root', () => {
+  // These pages live in /location/, where a relative asset path such as
+  // css/style.css would resolve to /location/css/style.css and 404.
+  const { LOCATIONS } = require('../scripts/locations');
+
+  for (const loc of LOCATIONS) {
+    const name = `location/${loc.slug}.html`;
+    const html = readPage(name);
+
+    for (const ref of localAssetReferences(html)) {
+      assert.ok(ref.startsWith('/'), `${name} uses a relative asset path: ${ref}`);
+    }
+  }
+});
+
+test('every area page states the indicative day rate and its conditions', () => {
+  const { LOCATIONS, RATE_NOTE, FROM_RATE } = require('../scripts/locations');
+
+  for (const loc of LOCATIONS) {
+    const html = readPage(`location/${loc.slug}.html`);
+    assert.ok(html.includes(FROM_RATE), `${loc.slug} does not show the day rate`);
+    assert.ok(html.includes(RATE_NOTE), `${loc.slug} does not show the rate conditions`);
+    assert.match(html, new RegExp(loc.postcode), `${loc.slug} does not mention its postcode`);
+  }
+});
+
+test('the area pages are reachable by a link from another page', () => {
+  const { LOCATIONS } = require('../scripts/locations');
+
+  for (const loc of LOCATIONS) {
+    const self = `location/${loc.slug}.html`;
+    // Only count links, and ignore the page linking to itself through its own
+    // canonical or og:url, which would make this pass for free.
+    const linked = PAGES
+      .filter((name) => name !== self)
+      .some((name) => new RegExp(`href="/location/${loc.slug}"`).test(readPage(name)));
+
+    assert.ok(linked, `no page links to /location/${loc.slug}`);
+  }
 });
 
 test('_redirects keeps the development files off the public site', () => {
