@@ -419,6 +419,19 @@ test('_redirects keeps the development files off the public site', () => {
   }
 });
 
+test('a removed area page redirects instead of serving a cached copy', () => {
+  // Cloudflare caches HTML for up to 7 days, so deleting a page from the repo
+  // does not stop the old URL being served. A removed location needs a rule.
+  const source = fs.readFileSync(path.join(REPO_ROOT, '_redirects'), 'utf8');
+  const retired = '/location/watford-wd17-telehandler-and-forklift-hire';
+
+  assert.ok(source.includes(retired), `_redirects does not retire ${retired}`);
+  assert.ok(
+    !fs.existsSync(path.join(REPO_ROOT, 'location', `${path.basename(retired)}.html`)),
+    'the retired page is back in location/, so the redirect is stale',
+  );
+});
+
 test('.assetsignore lists the development files', () => {
   // .assetsignore is only honoured when deploying with Wrangler (Workers).
   // The live site is published by Cloudflare Pages from a Git push, which

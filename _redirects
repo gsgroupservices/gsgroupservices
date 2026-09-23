@@ -12,3 +12,9 @@
 /.gitignore         /  301
 /tests/*            /  301
 /scripts/*          /  301
+
+# The Watford area page was removed: it was the one location outside London.
+# Cloudflare caches HTML at the edge for up to 7 days, so without a rule here
+# the old URL keeps serving a page that is no longer in the repository, complete
+# with outdated rates on it.
+/location/watford-wd17-telehandler-and-forklift-hire  /london  301
