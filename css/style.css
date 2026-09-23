@@ -277,74 +277,114 @@ header {
 
 /* =========================
    HERO
+   Titolo e sottotitolo a sinistra con il numero di telefono, form di
+   richiesta a destra. L'altezza e' vincolata alla finestra: il form deve
+   restare sopra la piega su un portatile, quindi il padding si adatta e
+   il form non supera mai la viewport.
 ========================= */
 .hero {
+  position: relative;
   background-image: url("../images/hero-plant-hire-groundworks-london.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  min-height: 80vh;
+  background-color: #0b1c2d;
   color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 
+  /* Pagine senza form: blocco centrato verticalmente e orizzontalmente. */
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-
   text-align: center;
-  padding: 60px 20px;
+  padding: 56px 24px;
 }
 
-.hero h1 {
-  font-size: 34px;
-  margin-bottom: 15px;
-  max-width: 900px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+/* Titolo e testo delle pagine senza form si fermano a una larghezza
+   leggibile invece di correre per tutta la pagina. */
+.hero > h1,
+.hero > p {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.hero p {
-  font-size: 18px;
-  max-width: 700px;
-  margin-bottom: 25px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-}
-
-/* =========================
-   HERO CON FORM
-   Testo e recapiti a sinistra, form di richiesta a destra. Su schermi
-   stretti le due colonne si impilano e il form resta subito sotto il
-   titolo, quindi raggiungibile senza scorrere.
-========================= */
-.hero-split {
+/* Home page e pagine di zona: testo a sinistra, form a destra. Il form
+   deve stare sopra la piega, quindi qui l'altezza la decide il contenuto
+   e non la viewport. */
+.hero:has(.hero-form) {
+  min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 40px;
-  align-items: start;
+  grid-template-columns: minmax(0, 620px) minmax(0, 420px);
+  justify-content: center;
+  align-items: center;
+  column-gap: 56px;
+  row-gap: 30px;
   text-align: left;
-  padding: 70px 32px;
 }
 
-.hero-split .hero-copy {
+.hero:has(.hero-form) > .hero-copy,
+.hero:has(.hero-form) > .hero-form {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Velo scuro: senza questo il testo bianco perde contrasto sulle zone
+   chiare della foto. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(6, 17, 28, 0.92) 0%,
+    rgba(6, 17, 28, 0.82) 45%,
+    rgba(6, 17, 28, 0.62) 100%
+  );
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy {
   max-width: 620px;
 }
 
-.hero-split h1 {
-  max-width: none;
+.hero h1 {
+  font-size: 44px;
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+/* Il sottotitolo resta su una misura leggibile. */
+.hero-subtitle {
+  font-size: 19px;
+  line-height: 1.55;
+  margin: 0 0 26px;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 54ch;
+  text-shadow: none;
 }
 
 .hero-points {
   list-style: none;
   padding: 0;
-  margin: 0 0 28px;
+  margin: 0 0 30px;
+  display: grid;
+  gap: 10px;
 }
 
 .hero-points li {
   position: relative;
   padding-left: 30px;
-  margin-bottom: 10px;
-  font-size: 17px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  font-size: 16px;
+  line-height: 1.5;
+  text-shadow: none;
 }
 
 /* Segno di spunta disegnato in CSS, così non serve un'icona esterna. */
@@ -352,7 +392,7 @@ header {
   content: "";
   position: absolute;
   left: 4px;
-  top: 0.55em;
+  top: 0.42em;
   width: 6px;
   height: 11px;
   border: solid #ff9800;
@@ -360,74 +400,216 @@ header {
   transform: rotate(45deg);
 }
 
-.hero-call {
-  display: inline-block;
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
+.hero-call {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #ff9800;
+  color: #0b1c2d;
+  padding: 12px 26px;
+  border-radius: 6px;
+  text-decoration: none;
+  text-shadow: none;
+  line-height: 1.25;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-call:hover,
+.hero-call:focus-visible {
+  background: #ffab33;
+  transform: translateY(-1px);
+}
+
+.hero-call .call-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.hero-call .call-number {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/* --- Form nella colonna di destra --- */
 .hero-form {
   background: #fff;
   color: #0b1c2d;
   border-radius: 10px;
-  padding: 26px 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
-  max-width: 460px;
+  padding: 26px 26px 28px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  text-shadow: none;
   width: 100%;
+  max-width: 420px;
   justify-self: end;
 }
 
 .hero-form h2 {
-  font-size: 22px;
-  margin: 0 0 4px;
+  font-size: 23px;
+  line-height: 1.25;
+  margin: 0 0 6px;
   color: #0b1c2d;
 }
 
 .hero-form-lead {
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 1.5;
   color: #5b6b7b;
-  margin-bottom: 8px;
-  text-shadow: none;
+  margin: 0 0 14px;
 }
 
-.hero-form .quote-form {
-  max-width: none;
-}
-
-.hero-form .quote-form label {
-  margin-top: 12px;
-  font-size: 15px;
+/* --- Campi, condivisi dal form breve e da quello completo --- */
+.quote-form label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
   color: #0b1c2d;
 }
 
-.hero-form .quote-form input,
-.hero-form .quote-form select,
-.hero-form .quote-form textarea {
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+  width: 100%;
   padding: 10px 12px;
+  border: 1px solid #c9d1d9;
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #0b1c2d;
+  background: #fff;
 }
 
-.hero-form .quote-form button {
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+  outline: 3px solid rgba(255, 152, 0, 0.4);
+  outline-offset: 1px;
+  border-color: #ff9800;
+}
+
+.quote-form textarea {
+  resize: vertical;
+  min-height: 52px;
+}
+
+/* Il form breve: campi ravvicinati per stare nella piega. */
+.quote-form--hero label {
+  margin-top: 10px;
+}
+
+.quote-form--hero input,
+.quote-form--hero select,
+.quote-form--hero textarea {
+  padding: 9px 11px;
+}
+
+.quote-form--hero button {
   width: 100%;
+  margin-top: 16px;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Il form completo su /contact.html respira di più. */
+.quote-form--full label {
+  margin-top: 15px;
+}
+
+.quote-form--full button {
+  margin-top: 20px;
   border: 0;
   cursor: pointer;
   font-size: 17px;
-  margin-top: 18px;
 }
 
+/* Campo esca: fuori dallo schermo, mai visibile, ma non deve generare
+   scorrimento orizzontale. */
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* --- Adattamento --- */
+
+/* Sotto i 1080px le due colonne si stringono: il form resta a destra ma
+   perde il margine esterno. */
+@media (max-width: 1080px) {
+  .hero:has(.hero-form) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+    column-gap: 36px;
+    padding: 44px 22px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+}
+
+/* Sotto i 900px non c'e' spazio per due colonne: il testo va sopra e il
+   form subito sotto, a tutta larghezza. */
 @media (max-width: 900px) {
-  .hero-split {
+  .hero:has(.hero-form) {
     grid-template-columns: minmax(0, 1fr);
-    gap: 28px;
-    padding: 48px 20px;
+    row-gap: 30px;
+    padding: 40px 22px 48px;
+  }
+
+  .hero h1 {
+    font-size: 33px;
   }
 
   .hero-form {
-    justify-self: stretch;
-    max-width: none;
+    justify-self: start;
+    max-width: 520px;
   }
 
-  .hero-split .hero-copy {
+  .hero-copy {
     max-width: none;
   }
 }
+
+@media (max-width: 620px) {
+  .hero {
+    padding: 34px 18px 42px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+  }
+
+  .hero-form {
+    max-width: none;
+    padding: 22px 18px 24px;
+  }
+
+  .hero-call {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+}
+
 
 /* =========================
    BUTTON
@@ -714,16 +896,6 @@ footer {
 
   .hero {
     background-image: url("../images/hero-plant-hire-groundworks-london-mobile.webp");
-    min-height: 70vh;
-    padding: 50px 20px;
-  }
-
-  .hero h1 {
-    font-size: 26px;
-  }
-
-  .hero p {
-    font-size: 16px;
   }
 }
 
@@ -873,48 +1045,6 @@ footer {
 
 .footer-content a:hover {
   text-decoration: underline;
-}
-
-/* =========================
-   FORM STYLES
-========================= */
-.quote-form {
-  max-width: 500px;
-}
-
-.quote-form label {
-  display: block;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  font-weight: 600;
-}
-
-.quote-form input,
-.quote-form select,
-.quote-form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.quote-form input:focus,
-.quote-form select:focus,
-.quote-form textarea:focus {
-  outline: none;
-  border-color: #ff9800;
-  box-shadow: 0 0 5px rgba(255,152,0,0.3);
-}
-
-.quote-form button {
-  margin-top: 20px;
-}
-
-/* Honeypot field - hidden from users */
-.honeypot-field {
-  position: absolute;
-  left: -9999px;
 }
 
 /* =========================

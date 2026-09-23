@@ -136,57 +136,47 @@
 <!-- HERO -->
 
 <!-- HERO -->
-  <section class="hero hero-split">
+  <section class="hero">
     <div class="hero-copy">
       <h1>Telehandler &amp; Forklift Hire in Enfield EN1</h1>
-      <p>Operated plant hire, groundworks and site logistics across Enfield and north London and the Hertfordshire border.</p>
+      <p class="hero-subtitle">Operated plant hire, mini diggers and groundworks support across Enfield and north London and the Hertfordshire border. From £450 per day, machine and operator included.</p>
 
       <ul class="hero-points">
-        <li>Operated telehandler &amp; forklift hire</li>
-        <li>From £450 per day, machine and operator</li>
+        <li>Operated plant hire, telehandler and forklift</li>
         <li>Mini digger, dumper and groundworks support</li>
-        <li>Experienced operators, full UK safety compliance</li>
-        <li>Covering London and the wider UK</li>
+        <li>From £450 per day, machine and operator included</li>
+        <li>Full UK safety compliance, experienced operators</li>
       </ul>
 
-      <a href="tel:+447459672693" class="button hero-call">Call 07459 672693</a>
+      <div class="hero-actions">
+        <a href="tel:+447459672693" class="hero-call">
+          <span class="call-label">Call us today</span>
+          <span class="call-number">07459 672693</span>
+        </a>
+      </div>
     </div>
 
     <div class="hero-form">
-      <h2>Get a Free Quote</h2>
-      <p class="hero-form-lead">Send us the details and we will come back with a price.</p>
+      <h2>Request a Quote</h2>
+      <p class="hero-form-lead">Tell us what you need and we will come back with a price.</p>
 
-      <form action="https://formspree.io/f/mzdazrgn" method="POST" class="quote-form">
+      <form action="https://formspree.io/f/mzdazrgn" method="POST" class="quote-form quote-form--hero">
         <!-- Honeypot field - hidden from users, catches bots -->
-        <input type="text" name="website" class="honeypot-field" tabindex="-1" autocomplete="off">
+        <input type="text" name="website" class="honeypot-field" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <label for="hero-name">Full Name *</label>
-        <input type="text" id="hero-name" name="name" required aria-required="true">
+        <label for="hero-name">Name</label>
+        <input type="text" id="hero-name" name="name" required aria-required="true" autocomplete="name">
 
-        <label for="hero-phone">Phone *</label>
-        <input type="tel" id="hero-phone" name="phone" required aria-required="true" placeholder="07XXX XXXXXX">
+        <label for="hero-phone">Phone</label>
+        <input type="tel" id="hero-phone" name="phone" required aria-required="true" autocomplete="tel" placeholder="07XXX XXXXXX">
 
-        <label for="hero-email">Email *</label>
-        <input type="email" id="hero-email" name="email" required aria-required="true">
+        <label for="hero-email">Email</label>
+        <input type="email" id="hero-email" name="email" required aria-required="true" autocomplete="email">
 
-        <label for="hero-service">Service Required *</label>
-        <select id="hero-service" name="service" required aria-required="true">
-          <option value="">Select a service</option>
-          <option value="Telehandler Hire">Telehandler Hire</option>
-          <option value="Forklift Hire">Forklift Hire</option>
-          <option value="Groundworks">Groundworks</option>
-          <option value="Mini Digger & Dumper">Mini Digger & Dumper</option>
-          <option value="Vehicle Box Services">Vehicle Box Services</option>
-          <option value="Borehole Drilling">Borehole Drilling</option>
-        </select>
+        <label for="hero-message">What do you need?</label>
+        <textarea id="hero-message" name="message" rows="2" placeholder="Machine, dates, site postcode..."></textarea>
 
-        <label for="hero-location">Project Location</label>
-        <input type="text" id="hero-location" name="location" placeholder="e.g. London, Enfield, Ilford">
-
-        <label for="hero-message">Project Details</label>
-        <textarea id="hero-message" name="message" rows="4" placeholder="Tell us about your project requirements..."></textarea>
-
-        <button type="submit" class="button">Get a Free Quote</button>
+        <button type="submit" class="button">Request a Quote</button>
       </form>
     </div>
   </section>

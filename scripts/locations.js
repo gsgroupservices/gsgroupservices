@@ -142,7 +142,8 @@ function renderLocationPage(loc) {
 <!-- HERO -->
 ${heroFormSection({
     title: `Telehandler &amp; Forklift Hire in ${loc.area} ${loc.postcode}`,
-    area: `${loc.area} and ${loc.region}`,
+    subtitle: `Operated plant hire, mini diggers and groundworks support across ${loc.area} and ${loc.region}. From £450 per day, machine and operator included.`,
+    uid: 'hero',
   })}
 
 <!-- INTRO -->

@@ -179,9 +179,10 @@ test('the mobile nav markup the module binds to is present', () => {
 
 test('the quote form appears above the fold on the pages that matter', () => {
   // The form is the site's main conversion path, so it belongs in the hero
-  // rather than only on /contact. These pages must carry it in the first
-  // section, not somewhere further down.
-  const { FIELDS, FORM_ACTION } = require('../scripts/quote-form');
+  // rather than only on /contact. The hero form is deliberately shorter than
+  // the full one on /contact: it has to fit alongside the headline on a
+  // laptop, and anything taller pushes the submit button below the fold.
+  const { HERO_FIELDS, FORM_ACTION } = require('../scripts/quote-form');
 
   const pages = [
     'index.html',
@@ -193,18 +194,60 @@ test('the quote form appears above the fold on the pages that matter', () => {
     const hero = dom.window.document.querySelector('.hero');
 
     assert.ok(hero, `${page} has no .hero section`);
-    assert.ok(hero.classList.contains('hero-split'), `${page} hero is not split`);
 
     const form = hero.querySelector('form.quote-form');
     assert.ok(form, `${page} has no quote form in the hero`);
     assert.equal(form.getAttribute('action'), FORM_ACTION, `${page} posts to the wrong endpoint`);
 
-    for (const field of FIELDS) {
+    for (const field of HERO_FIELDS) {
       assert.ok(
         form.querySelector(`[name="${field}"]`),
         `${page} hero form is missing the "${field}" field`,
       );
     }
+  }
+});
+
+test('the hero leads with a title, a subtitle and a phone number', () => {
+  // The brief is a clear hero: title, subtitle, form on the right and a call
+  // button on the left. Each piece has to be present and non-empty, because a
+  // missing subtitle or a blank call button is invisible in a screenshot.
+  const { PHONE_DISPLAY, PHONE_HREF } = require('../scripts/quote-form');
+
+  const pages = [
+    'index.html',
+    ...PAGES.filter((name) => name.startsWith('location/')),
+  ];
+
+  for (const page of pages) {
+    const dom = new JSDOM(readPage(page));
+    const hero = dom.window.document.querySelector('.hero');
+    const doc = dom.window.document;
+
+    const h1 = hero.querySelector('h1');
+    assert.ok(h1 && h1.textContent.trim().length > 0, `${page} hero has no title`);
+
+    const subtitle = hero.querySelector('.hero-subtitle');
+    assert.ok(
+      subtitle && subtitle.textContent.trim().length > 0,
+      `${page} hero has no subtitle`,
+    );
+
+    const call = hero.querySelector('.hero-call');
+    assert.ok(call, `${page} hero has no call button`);
+    assert.equal(call.getAttribute('href'), PHONE_HREF, `${page} call button dials the wrong number`);
+    assert.match(call.textContent, new RegExp(PHONE_DISPLAY.replace(/ /g, '\\s*')),
+      `${page} call button does not show the number`);
+
+    // The form is the second column, so it must come after the copy in source
+    // order for the two-column layout to put it on the right.
+    const copy = hero.querySelector('.hero-copy');
+    const form = hero.querySelector('.hero-form');
+    assert.ok(copy && form, `${page} hero is not split into copy and form`);
+    assert.ok(
+      copy.compareDocumentPosition(form) & doc.defaultView.Node.DOCUMENT_POSITION_FOLLOWING,
+      `${page} hero puts the form before the copy`,
+    );
   }
 });
 
@@ -226,9 +269,11 @@ test('no page has two forms sharing a field id', () => {
   }
 });
 
-test('the hero form matches the contact page form', () => {
-  // Both post to the same Formspree inbox, so the field names have to agree or
-  // submissions would arrive with different shapes.
+test('the hero form is a subset of the contact page form', () => {
+  // Both post to the same Formspree inbox. The hero form is the short version,
+  // so it carries a subset of the contact form's fields; any field it does
+  // send must use the same name and the same value options, or submissions
+  // would arrive with a shape the inbox does not expect.
   const contact = new JSDOM(readPage('contact.html'))
     .window.document.querySelector('form.quote-form');
   const hero = new JSDOM(readPage('index.html'))
@@ -237,7 +282,16 @@ test('the hero form matches the contact page form', () => {
   const names = (form) => [...form.querySelectorAll('[name]')]
     .map((el) => el.getAttribute('name')).sort();
 
-  assert.deepEqual(names(hero), names(contact));
+  const contactNames = names(contact);
+  for (const name of names(hero)) {
+    assert.ok(contactNames.includes(name), `hero field "${name}" is not on the contact form`);
+  }
+
+  // The service list is shared, so the two cannot drift apart.
+  const options = (form) => [...form.querySelectorAll('select[name="service"] option')]
+    .map((o) => o.getAttribute('value'));
+  assert.deepEqual(options(hero), [], 'the hero form should stay short');
+  assert.ok(options(contact).length > 1, 'the contact form should offer services');
 });
 
 test('the contact page exposes the quote form', () => {
