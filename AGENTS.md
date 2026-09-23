@@ -74,6 +74,29 @@ Consequences worth knowing:
 
 ## Conventions and gotchas
 
+- `scripts/build-locations.js` regenerates `location/*.html` from
+  `london.html`'s head/footer plus `renderLocationPage`. Run
+  `npm run build:locations` after editing that template; running
+  `scripts/locations.js` directly is a no-op and writes nothing.
+- The hero has two shapes. The homepage and the location pages carry a
+  two-column hero (`.hero:has(.hero-form)`: copy left, short form right);
+  every other page has a plain centred text-only hero. When changing hero
+  CSS, scope it to one shape or the other, and check a `services.html`
+  style page as well as `index.html`.
+- The hero form is the short version (name, phone, email, short request).
+  The full form with the service dropdown and project details lives on
+  `/contact`. `site-integrity.test.js` fails if a hero field name is not
+  also on the contact form, so the two cannot drift apart.
+- CSS layout is checked against a real browser, not estimated. jsdom does
+  no layout, so it cannot catch an overlap or a form pushed below the
+  fold. Headless Chromium is at `/usr/bin/chromium` (no Playwright or
+  Puppeteer); the working recipe is a `--dump-dom` run against a page with
+  a probe `<script>` appended that measures `getBoundingClientRect()` and
+  writes the result into a `<pre id="__probe__">`. Check widths 1440,
+  1366, 1280, 1024, 900, 768 and 390, and assert no overlapping text and
+  no horizontal overflow. Write the probe to its own `.js` file and load
+  it with `<script src>`: inlining it through a shell here-string mangles
+  the quotes.
 - `LEGGIMI.txt` is the maintainer's publish notes (Italian). The authoritative
   site content may be supplied as a zip inside the repo; when it is, copy it over
   the working tree rather than hand-editing pages.
