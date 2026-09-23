@@ -13,6 +13,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const { RATES, FROM_RATE, RATE_NOTE, rateTable } = require('./rates');
+const { heroFormSection } = require('./quote-form');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const SITE = 'https://gsgroupservices.co.uk';
@@ -139,13 +140,10 @@ function renderLocationPage(loc) {
 
   const body = `
 <!-- HERO -->
-<section class="hero">
-  <h1>Telehandler &amp; Forklift Hire in ${loc.area} ${loc.postcode}</h1>
-  <p>
-    Operated plant hire, groundworks and site logistics across ${loc.area}
-    and ${loc.region}.
-  </p>
-</section>
+${heroFormSection({
+    title: `Telehandler &amp; Forklift Hire in ${loc.area} ${loc.postcode}`,
+    area: `${loc.area} and ${loc.region}`,
+  })}
 
 <!-- INTRO -->
 <section class="content">

@@ -27,6 +27,9 @@ Pages via `wrangler.jsonc`.
   render from it, and a test fails if `index.html` or `services.html` drift from
   it. Change the commercial terms there, rebuild the area pages, then bring the
   hand-written tables into line.
+- `scripts/quote-form.js` — the hero "Get a Free Quote" form. Shared by the
+  homepage and the area pages so all submissions reach the same Formspree inbox
+  with the same field names as `contact.html`.
 - `sitemap.xml`, `robots.txt` — SEO.
 
 ## Testing

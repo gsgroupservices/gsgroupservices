@@ -11,6 +11,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { JSDOM } = require('jsdom');
 
 const { REPO_ROOT } = require('./helpers/dom');
 
@@ -174,6 +175,69 @@ test('the mobile nav markup the module binds to is present', () => {
     assert.match(html, /class="nav-toggle"/, `${name} has no nav toggle`);
     assert.match(html, /id="site-nav"/, `${name} has no #site-nav`);
   }
+});
+
+test('the quote form appears above the fold on the pages that matter', () => {
+  // The form is the site's main conversion path, so it belongs in the hero
+  // rather than only on /contact. These pages must carry it in the first
+  // section, not somewhere further down.
+  const { FIELDS, FORM_ACTION } = require('../scripts/quote-form');
+
+  const pages = [
+    'index.html',
+    ...PAGES.filter((name) => name.startsWith('location/')),
+  ];
+
+  for (const page of pages) {
+    const dom = new JSDOM(readPage(page));
+    const hero = dom.window.document.querySelector('.hero');
+
+    assert.ok(hero, `${page} has no .hero section`);
+    assert.ok(hero.classList.contains('hero-split'), `${page} hero is not split`);
+
+    const form = hero.querySelector('form.quote-form');
+    assert.ok(form, `${page} has no quote form in the hero`);
+    assert.equal(form.getAttribute('action'), FORM_ACTION, `${page} posts to the wrong endpoint`);
+
+    for (const field of FIELDS) {
+      assert.ok(
+        form.querySelector(`[name="${field}"]`),
+        `${page} hero form is missing the "${field}" field`,
+      );
+    }
+  }
+});
+
+test('no page has two forms sharing a field id', () => {
+  // The location pages carry the hero form, and a duplicate id would make the
+  // labels point at the wrong input.
+  for (const page of PAGES) {
+    const dom = new JSDOM(readPage(page));
+    const ids = [...dom.window.document.querySelectorAll('[id]')].map((el) => el.id);
+    const seen = new Set();
+    const duplicates = new Set();
+
+    for (const id of ids) {
+      if (seen.has(id)) duplicates.add(id);
+      seen.add(id);
+    }
+
+    assert.deepEqual([...duplicates], [], `${page} has duplicate element ids`);
+  }
+});
+
+test('the hero form matches the contact page form', () => {
+  // Both post to the same Formspree inbox, so the field names have to agree or
+  // submissions would arrive with different shapes.
+  const contact = new JSDOM(readPage('contact.html'))
+    .window.document.querySelector('form.quote-form');
+  const hero = new JSDOM(readPage('index.html'))
+    .window.document.querySelector('.hero form.quote-form');
+
+  const names = (form) => [...form.querySelectorAll('[name]')]
+    .map((el) => el.getAttribute('name')).sort();
+
+  assert.deepEqual(names(hero), names(contact));
 });
 
 test('the contact page exposes the quote form', () => {

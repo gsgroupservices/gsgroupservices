@@ -311,6 +311,125 @@ header {
 }
 
 /* =========================
+   HERO CON FORM
+   Testo e recapiti a sinistra, form di richiesta a destra. Su schermi
+   stretti le due colonne si impilano e il form resta subito sotto il
+   titolo, quindi raggiungibile senza scorrere.
+========================= */
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 40px;
+  align-items: start;
+  text-align: left;
+  padding: 70px 32px;
+}
+
+.hero-split .hero-copy {
+  max-width: 620px;
+}
+
+.hero-split h1 {
+  max-width: none;
+}
+
+.hero-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+}
+
+.hero-points li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  font-size: 17px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+/* Segno di spunta disegnato in CSS, così non serve un'icona esterna. */
+.hero-points li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.55em;
+  width: 6px;
+  height: 11px;
+  border: solid #ff9800;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.hero-call {
+  display: inline-block;
+}
+
+.hero-form {
+  background: #fff;
+  color: #0b1c2d;
+  border-radius: 10px;
+  padding: 26px 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  max-width: 460px;
+  width: 100%;
+  justify-self: end;
+}
+
+.hero-form h2 {
+  font-size: 22px;
+  margin: 0 0 4px;
+  color: #0b1c2d;
+}
+
+.hero-form-lead {
+  font-size: 15px;
+  color: #5b6b7b;
+  margin-bottom: 8px;
+  text-shadow: none;
+}
+
+.hero-form .quote-form {
+  max-width: none;
+}
+
+.hero-form .quote-form label {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #0b1c2d;
+}
+
+.hero-form .quote-form input,
+.hero-form .quote-form select,
+.hero-form .quote-form textarea {
+  padding: 10px 12px;
+}
+
+.hero-form .quote-form button {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  font-size: 17px;
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .hero-split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 48px 20px;
+  }
+
+  .hero-form {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .hero-split .hero-copy {
+    max-width: none;
+  }
+}
+
+/* =========================
    BUTTON
 ========================= */
 .button {
