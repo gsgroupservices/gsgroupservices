@@ -97,6 +97,15 @@ Consequences worth knowing:
   no horizontal overflow. Write the probe to its own `.js` file and load
   it with `<script src>`: inlining it through a shell here-string mangles
   the quotes.
+- The phone number is deliberately not printed anywhere. `07459 672693` was
+  removed from the header, the footer and the contact blocks on every page;
+  what remains is a "Call Now" link that dials it. Do not put the digits back
+  into visible page text. They are still intentionally present in three
+  non-visible places, so do not "tidy" these away either:
+  the JSON-LD `telephone` on every page, the `wa.me/447459672693` deep link
+  behind the WhatsApp button, and the `tel:` hrefs.
+  `site-integrity.test.js` checks rendered text, not markup, so it will
+  accept the number in an href but fail the page if it becomes readable.
 - `LEGGIMI.txt` is the maintainer's publish notes (Italian). The authoritative
   site content may be supplied as a zip inside the repo; when it is, copy it over
   the working tree rather than hand-editing pages.

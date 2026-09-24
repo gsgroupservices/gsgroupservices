@@ -192,10 +192,6 @@ header {
   white-space: nowrap;
 }
 
-.menu-contact.phone a {
-  color: #ff9800;
-}
-
 .menu-contact.email a {
   color: #ffffff;
   opacity: 0.9;

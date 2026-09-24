@@ -212,7 +212,7 @@ test('the hero leads with a title, a subtitle and a call button', () => {
   // The brief is a clear hero: title, subtitle, form on the right and a call
   // button on the left. Each piece has to be present and non-empty, because a
   // missing subtitle or a blank call button is invisible in a screenshot.
-  const { PHONE_DISPLAY, PHONE_HREF } = require('../scripts/quote-form');
+  const { PHONE_HREF } = require('../scripts/quote-form');
 
   const pages = [
     'index.html',
@@ -237,20 +237,11 @@ test('the hero leads with a title, a subtitle and a call button', () => {
     assert.ok(call, `${page} hero has no call button`);
     assert.equal(call.getAttribute('href'), PHONE_HREF, `${page} call button dials the wrong number`);
     assert.match(call.textContent.trim(), /call/i, `${page} call button has no label`);
-    // The button is deliberately wordless apart from the label, so the number
-    // is not spelled out twice next to the number in the header.
+    // The button is deliberately wordless apart from the label.
     assert.doesNotMatch(
       call.textContent,
       /\d/,
       `${page} call button should not print the phone number`,
-    );
-
-    // The number still has to be reachable, or hiding it in the button would
-    // have removed it from the page.
-    assert.match(
-      doc.body.textContent,
-      new RegExp(PHONE_DISPLAY.replace(/ /g, '\\s*')),
-      `${page} no longer shows the phone number anywhere`,
     );
 
     // The form is the second column, so it must come after the copy in source
@@ -262,6 +253,43 @@ test('the hero leads with a title, a subtitle and a call button', () => {
       copy.compareDocumentPosition(form) & doc.defaultView.Node.DOCUMENT_POSITION_FOLLOWING,
       `${page} hero puts the form before the copy`,
     );
+  }
+});
+
+test('no page prints the phone number visibly', () => {
+  // The number was taken off the header, the footer and the contact blocks in
+  // favour of a "Call Now" button that dials it. It is deliberately still in
+  // reach by other routes, so this checks the rendered text rather than the
+  // markup: the number may appear in JSON-LD, in the wa.me deep link, and in
+  // the tel: hrefs, but must not be read out as text anywhere on the page.
+  const { PHONE_DISPLAY, PHONE_HREF } = require('../scripts/quote-form');
+
+  const digits = PHONE_DISPLAY.replace(/\s+/g, '');
+  const spaced = PHONE_DISPLAY.replace(/ /g, '\\s*');
+
+  for (const page of PAGES) {
+    const dom = new JSDOM(readPage(page));
+    const doc = dom.window.document;
+
+    assert.doesNotMatch(doc.body.textContent, new RegExp(spaced),
+      `${page} still shows ${PHONE_DISPLAY} as visible text`);
+
+    // Guard against the same number written without spaces, which the check
+    // above would miss.
+    assert.doesNotMatch(doc.body.textContent, new RegExp(digits),
+      `${page} still shows the phone number as visible text`);
+
+    // The link itself has to survive, or the site would have no way to dial.
+    for (const link of doc.querySelectorAll(`a[href^="${PHONE_HREF}"]`)) {
+      assert.doesNotMatch(link.textContent, /\d/,
+        `${page} has a call link whose label prints digits`);
+      // A link with no readable label is a dead control to a screen reader, so
+      // the icon-only ones need to carry a name some other way.
+      assert.ok(
+        link.textContent.trim().length > 0 || link.getAttribute('aria-label'),
+        `${page} has a call link with no label and no aria-label`,
+      );
+    }
   }
 });
 
