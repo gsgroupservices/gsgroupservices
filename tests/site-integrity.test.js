@@ -208,7 +208,7 @@ test('the quote form appears above the fold on the pages that matter', () => {
   }
 });
 
-test('the hero leads with a title, a subtitle and a phone number', () => {
+test('the hero leads with a title, a subtitle and a call button', () => {
   // The brief is a clear hero: title, subtitle, form on the right and a call
   // button on the left. Each piece has to be present and non-empty, because a
   // missing subtitle or a blank call button is invisible in a screenshot.
@@ -236,8 +236,22 @@ test('the hero leads with a title, a subtitle and a phone number', () => {
     const call = hero.querySelector('.hero-call');
     assert.ok(call, `${page} hero has no call button`);
     assert.equal(call.getAttribute('href'), PHONE_HREF, `${page} call button dials the wrong number`);
-    assert.match(call.textContent, new RegExp(PHONE_DISPLAY.replace(/ /g, '\\s*')),
-      `${page} call button does not show the number`);
+    assert.match(call.textContent.trim(), /call/i, `${page} call button has no label`);
+    // The button is deliberately wordless apart from the label, so the number
+    // is not spelled out twice next to the number in the header.
+    assert.doesNotMatch(
+      call.textContent,
+      /\d/,
+      `${page} call button should not print the phone number`,
+    );
+
+    // The number still has to be reachable, or hiding it in the button would
+    // have removed it from the page.
+    assert.match(
+      doc.body.textContent,
+      new RegExp(PHONE_DISPLAY.replace(/ /g, '\\s*')),
+      `${page} no longer shows the phone number anywhere`,
+    );
 
     // The form is the second column, so it must come after the copy in source
     // order for the two-column layout to put it on the right.

@@ -129,10 +129,7 @@ ${points.map((point) => `${p}      <li>${point}</li>`).join('\n')}
 ${p}    </ul>
 
 ${p}    <div class="hero-actions">
-${p}      <a href="${PHONE_HREF}" class="hero-call">
-${p}        <span class="call-label">Call us today</span>
-${p}        <span class="call-number">${PHONE_DISPLAY}</span>
-${p}      </a>
+${p}      <a href="${PHONE_HREF}" class="hero-call">Call Now</a>
 ${p}    </div>
 ${p}  </div>
 

@@ -19,7 +19,6 @@ const {
   FIELDS,
   HERO_FIELDS,
   NAV_FIELDS,
-  PHONE_DISPLAY,
   PHONE_HREF,
   escapeAttribute,
   heroQuoteForm,
@@ -195,12 +194,17 @@ test('the hero section puts the copy before the form', () => {
   assert.deepEqual(children, ['hero-copy', 'hero-form']);
 });
 
-test('the hero call button dials the number it displays', () => {
+test('the hero call button dials the number and shows no digits', () => {
+  // The button says what it does and dials the right number, but the number
+  // itself is left to the header so the hero is not shouting it twice.
   const dom = parse(heroFormSection({ title: 'T', subtitle: 'S' }));
   const call = dom.querySelector('.hero-call');
 
   assert.equal(call.getAttribute('href'), PHONE_HREF);
-  assert.match(call.textContent, new RegExp(PHONE_DISPLAY));
+  assert.match(call.textContent.trim(), /call/i);
+  assert.doesNotMatch(call.textContent, /\d/);
+  assert.equal(call.querySelector('.call-number'), null);
+  assert.equal(call.querySelector('.call-label'), null);
 });
 
 test('the hero section accepts custom points instead of the defaults', () => {
